@@ -1,0 +1,351 @@
+# Integration Guide
+
+This document will explain how to integrate Cloud Service Registry clients,
+into your applications and also contains an example on how to integrate
+the Twisted Python client into your Twisted-powered application.
+
+## General Flow
+
+The general flow when registering a service with Cloud Service Registry is:
+
+* Create a session.
+* Add service(s) to the session.
+* Heartbeat the session to maintain it.
+
+Once you've done those things, you'll have a session in Cloud Service
+Registry with a service attached to it, and you will be able to utilize
+features such as the Events feed, which contains events for when a service
+has joined, when a session has timed out, and more.
+
+### Create a session
+
+The first thing you will want to do when using the Cloud Service Registry
+is create a session.
+
+As described in the [Session](TODO) section of the Concepts document,
+sessions enable clients to create persistent sessions on the server that
+are used as a context for other operations. Clients should first create a
+session and heartbeat it to maintain the session.
+
+To create a session, POST to /sessions, replacing "1234" with your account
+ID number, and using the auth token returned by the auth API. The request
+body must contain `heartbeat_timeout` in the range of 3-30 seconds, and may
+contain optional metadata (key/value pairs).
+
+```shell
+POST /sessions HTTP/1.1
+Host: todo.api.rackspacecloud.com/v1.0/1234
+Accept: application/json
+X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
+```
+
+Example request body:
+
+```javascript
+{
+    "metadata": {
+        "region": "dfw"
+    },
+    "heartbeat_timeout": 30
+}
+```
+
+The location header of the response should look something like this:
+
+https://TODO/v1.0/1234/sessions/seMkzI0mxC
+
+The last part of the location header, seMkzI0mxC, is the session ID.
+
+The response body should look something like this:
+
+```javascript
+{
+    "token": "6bc8d050-f86a-11e1-a89e-ca2ffe480b20"
+}
+```
+
+It contains the initial token which you can use to start heartbeating the
+session.
+
+### Add Services
+
+Next, you'll want to add services to the session. Service IDs are user
+provided, and must be unique across the whole account. Let's say our
+service name is 'my-server1-api1'. The way to create a service is to POST to
+/services with a body containing the service ID, the session ID that the
+service should belong to, optional metadata, and optional tags:
+
+```shell
+POST /services HTTP/1.1
+Host: todo.api.rackspacecloud.com/v1.0/1234
+Accept: application/json
+X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
+```
+
+The body would look like this:
+
+```javascript
+{
+    "id": "dfw1-api",
+    "session_id": "sessionId"
+}
+```
+
+Let's say you also added a service called 'dfw1-messenger', with a few tags
+and some metadata. If you GET /services, you should see this:
+
+```javascript
+{
+    "values": [
+        {
+            "id": "dfw1-api",
+            "session_id": "sessionId",
+            "tags": [],
+            "metadata": {}
+        },
+        {
+            "id": "dfw1-messenger",
+            "session_id": "sessionId",
+            "tags": [
+                "tag1",
+                "tag2",
+                "tag3"
+            ],
+            "metadata": {
+                "region": "dfw",
+                "port": "5757",
+                "ip": "127.0.0.1"
+            }
+        }
+    ],
+    "metadata": {
+        "count": 2,
+        "limit": 100,
+        "marker": null,
+        "next_href": null
+    }
+}
+```
+
+You can also GET services by tag:
+
+```shell
+GET /services?tag=tag1 HTTP/1.1
+Host: todo.api.rackspacecloud.com/v1.0/1234
+Accept: application/json
+X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
+```
+
+and the response would look like this:
+
+```javascript
+{
+    "values": [
+        {
+            "id": "dfw1-messenger",
+            "session_id": "sessionId",
+            "tags": [
+                "tag1",
+                "tag2",
+                "tag3"
+            ],
+            "metadata": {
+                "region": "dfw",
+                "port": "5757",
+                "ip": "127.0.0.1"
+            }
+        }
+    ],
+    "metadata": {
+        "count": 1,
+        "limit": 100,
+        "marker": null,
+        "next_href": null
+    }
+}
+```
+
+To change the dfw1-messenger service (for example, update its metadata),
+you can do an HTTP PUT request to /services/dfw1-messenger with a body that
+contains the new metadata that you'd like the service to have.
+
+### Heartbeat the Session
+
+Heartbeating is as simple as POSTing to /sessions/[session ID]/heartbeat
+with the token as the body.
+
+```shell
+POST /sessions/seMkzI0mxC/heartbeat HTTP/1.1
+Host: todo.api.rackspacecloud.com/v1.0/1234
+Accept: application/json
+X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
+```
+
+The request body would look like this:
+
+```javascript
+{
+    "token": "6bc8d050-f86a-11e1-a89e-ca2ffe480b20"
+}
+```
+
+And the response body would look the same, except that the token would be
+different. You could then use the new token to heartbeat once again.
+
+There are client libraries that abstract away heartbeating so that when you
+create a session, you get an object back that heartbeats for you
+automatically. We will see that in the Twisted Python client in the next
+section.
+
+## Using the Twisted Python client
+
+All of the functionality above has been abstracted away in various clients
+for popular programming languages such as Java, Node.js, and Python. In
+this section, we'll see how to use the Twisted Python client to go through
+the same flow of creating a session, adding services to it, and
+heartbeating the session.
+
+### Installing the client
+
+The client is available in the Python Package Index. To install, you can do:
+
+```Shell
+pip install txServiceRegistry
+```
+
+### Create a session
+
+In order to create a session using the Twisted Python client, we first have
+to instantiate a client to interact with the Cloud Service Registry:
+
+```Python
+from txServiceRegistry.client import Client
+from twisted.internet import reactor
+
+RACKSPACE_USERNAME = '' # your username here
+RACKSPACE_KEY = '' # your API key here
+SERVICE_REGISTRY_URL = 'https://todo.api.rackspace.com/v1.0/'
+
+client = Client(username=RACKSPACE_USERNAME,
+                apiKey=RACKSPACE_KEY,
+                baseUrl=SERVICE_REGISTRY_URL,
+                region='us')
+```
+
+The region keyword argument above determines which Rackspace authentication
+URL the client will use to authenticate. You can specify either 'us' or
+'uk'.
+
+Now that we've created a Client object, we can use it to work with the
+various Cloud Service Registry APIS. Creating a session is straightforward:
+
+```Python
+def cb(result):
+    token = result[0]['token']
+    sessionId = result[1]
+    heartbeater = result[2]
+
+d = client.sessions.create(30)
+d.addCallback(cb)
+
+reactor.run()
+```
+
+### Add Services
+
+We also now have the session ID (let's say it's 'seMkzI0mxC'), so we can
+start adding services to the session:
+
+```Python
+def cb(result):
+    serviceId = result
+
+d = client.services.register('seMkzI0mxC', 'serviceId', {'tags': ['tag1', 'tag2', 'tag3']})
+d.addCallback(cb)
+
+reactor.run()
+```
+
+### Heartbeat the Session
+
+When creating a session using the Twisted client, the result contains the
+response body (which contains the initial token required for heartbeating
+the session), the session ID, and a HeartBeater object. The HeartBeater
+object allows us to automatically heartbeat the session by calling the
+start() method:
+
+```Python
+heartbeater.start()
+```
+
+This causes the HeartBeater object to start heartbeating automatically,
+using the initial token. It will heartbeat the session, get the next token,
+and heartbeat the session again continuously until the stop() method is
+called.
+
+You may also heartbeat the session manually with `client.sessions.
+heartbeat('seMkzI0mxC', 'token')`
+
+### Integration Example
+
+Here is a short example of a web server that registers with the Cloud
+Service Registry on startup, and uses the HeartBeater object while it is
+running in order to maintain the session:
+
+```Python
+from twisted.web import server, resource
+from twisted.internet import reactor
+
+from txServiceRegistry import Client
+
+RACKSPACE_USERNAME = '' # your Rackspace username here
+RACKSPACE_KEY = '' # your Rackspace API key here
+
+client = Client(RACKSPACE_USERNAME,
+                RACKSPACE_KEY,
+                'us')
+
+class Simple(resource.Resource):
+    isLeaf = True
+    def render_GET(self, request):
+        return "<html>Hello, world!</html>"
+
+
+def cbSession(result):
+    global heartBeater
+    sessionId = result[1]
+    heartBeater = result[2]
+    heartBeater.start()
+
+    def cbService(result):
+        print result
+
+    d = client.services.register(sessionId,
+                                 'http-service',
+                                 {'tags': ['web']})
+    d.addCallback(cbService)
+
+d = client.sessions.create(30)
+d.addCallback(cbSession)
+
+site = server.Site(Simple())
+reactor.listenTCP(8080, site)
+reactor.run()
+```
+
+The code above is a simple web server that responds with "<html"Hello,
+world!</html> on every GET request. The code that interacts with the Cloud
+Service Registry can be explained as follows:
+
+First, the server creates a session with a heartbeat interval of 30. Since
+client.sessions.create() returns a Twisted Deferred, a callback must be
+added to it in order to use the result. This is done here:
+
+```Python
+d = client.sessions.create(30)
+d.addCallback(cbSession)
+```
+
+The cbSesssion function takes the result of client.sessions.create() as an
+argument, and grabs the session ID as well as starts the HeartBeater. It
+then creates a service named 'http-service' and attaches it to the session.
