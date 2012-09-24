@@ -73,6 +73,12 @@ side you should cache the list services response in your client.
 This will allow you to retrieve a (potentially stale) list of services from the
 cache in case a minor service interruption occurs.
 
+### Retry heartbeating on non 404 errors
+
+If the API endpoint returns a non 404 error (e.g 500) when heartbeating a
+session, you should immediately try to re-send the heartbeat. The error could
+indicate an intermediate instead of an actual issue.
+
 ## Tools
 
 ### Long Running Process Wrapper
@@ -89,11 +95,23 @@ interval).
 #### Installation
 
 ```shell
-npm install todo
+npm install service-registry-process-wrapper
 ```
 
 #### Usage
 
 ```shell
-todo
+service-registry-wrapper --id=<service id> --tags=<comma separated list of tags> \
+          --metadata=<comma separated list of key=value pairs> \
+          --interval=<heartbeat interval> [--abort-on-failure] \
+          <path to the process which is being wrapped> <process arguments>
+```
+
+For example:
+
+```shell
+service-registry-wrapper --id=my-host1-api0 --tags=api,www
+          --metadata=port=8000,host=localhost,is_public=true \
+          --interval=20  \
+          /opt/my-app/bin/api --port=8000 --host=localhost
 ```
