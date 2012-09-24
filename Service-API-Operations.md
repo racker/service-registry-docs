@@ -156,8 +156,8 @@ by the `heartbeat_timeout` attribute on the session object.
 For example, if you use a `heartbeat_timeout` of `30` seconds, this means
 that you need to heartbeat the session every 30 seconds or more often.
 Because of possible network delay and other factors, you are advised to
-heartbeat your session at least 2 seconds sooner than the
-`heartbeat_timeout`. In this example it would be every `28` seconds.
+heartbeat your session at least 3 seconds sooner than the
+`heartbeat_timeout`. In this example it would be every `27` seconds.
 
 When you heartbeat a session, you are advised to use an
 [HTTP/1.1 persistent connection](http://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html)
