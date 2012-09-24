@@ -333,7 +333,7 @@ reactor.listenTCP(8080, site)
 reactor.run()
 ```
 
-The code above is a simple web server that responds with "<html"Hello,
+The code above is a simple web server that responds with "<html>Hello,
 world!</html> on every GET request. The code that interacts with the Cloud
 Service Registry can be explained as follows:
 
