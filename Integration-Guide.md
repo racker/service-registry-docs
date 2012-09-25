@@ -34,7 +34,7 @@ contain optional metadata (key/value pairs).
 
 ```shell
 POST /sessions HTTP/1.1
-Host: todo.api.rackspacecloud.com/v1.0/1234
+Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
@@ -77,7 +77,7 @@ service should belong to, optional metadata, and optional tags:
 
 ```shell
 POST /services HTTP/1.1
-Host: todo.api.rackspacecloud.com/v1.0/1234
+Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
@@ -131,7 +131,7 @@ You can also GET services by tag:
 
 ```shell
 GET /services?tag=tag1 HTTP/1.1
-Host: todo.api.rackspacecloud.com/v1.0/1234
+Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
@@ -176,7 +176,7 @@ with the token as the body.
 
 ```shell
 POST /sessions/seMkzI0mxC/heartbeat HTTP/1.1
-Host: todo.api.rackspacecloud.com/v1.0/1234
+Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
@@ -224,7 +224,7 @@ from twisted.internet import reactor
 
 RACKSPACE_USERNAME = '' # your username here
 RACKSPACE_KEY = '' # your API key here
-SERVICE_REGISTRY_URL = 'https://todo.api.rackspace.com/v1.0/'
+SERVICE_REGISTRY_URL = 'https://dfw.registry.api.rackspace.com/v1.0/'
 
 client = Client(username=RACKSPACE_USERNAME,
                 apiKey=RACKSPACE_KEY,

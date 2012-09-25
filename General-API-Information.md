@@ -6,9 +6,14 @@ Cloud Service Registry API are performed using SSL over HTTPS on TCP port 443.
 
 ## Endpoint Access
 
-For Rackspace Cloud Service Registry, use the endpoint below to access the API:
+Rackspace Cloud Service Registry runs as a separate instance in multiple
+regions. You are advised to pick the region which is closest to your
+servers.
 
-https://todo.api.rackspacecloud.com/v1.0/1234
+During preview, only a single instance in DFW is active. You can reach it at the
+address bellow:
+
+https://dfw.registry.api.rackspacecloud.com/v1.0/1234
 
 Replace the sample account ID number, 1234, with your actual account number.
 Your account number is returned as part of the authentication service
@@ -31,11 +36,11 @@ JSON | application/json
 
 The Rackspace Cloud Service Registry API uses a URI versioning scheme. In the
 URI scheme, the first element of the path contains the target version
-identifier (e.g. https://todo.api.rackspacecloud.com/v1.0/…).
+identifier (e.g. https://dfw.registry.api.rackspacecloud.com/v1.0/…).
 
 ```shell
 GET /sessions HTTP/1.1
-Host: todo.api.rackspacecloud.com/v1.0/1234
+Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
