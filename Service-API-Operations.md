@@ -341,7 +341,17 @@ Error Response Codes: 400, 401, 403, 500, 503
 
 ```javascript
 {
-    "id": "dfw1-api",
+    "tags": [
+        "tag1",
+        "tag2",
+        "tag3"
+    ],
+    "metadata": {
+        "region": "dfw",
+        "port": "5757",
+        "ip": "127.0.0.1"
+    },
+    "id": "dfw1-messenger",
     "session_id": "sessionId"
 }
 ```
@@ -506,6 +516,15 @@ returned.
             "timestamp": 1346967146370,
             "type": "service.join",
             "payload": {
+                "id": "dfw1-api",
+                "session_id": "sessionId",
+                "tags": [],
+                "metadata": {}
+            }
+        },
+        {
+            "type": "service.join",
+            "payload": {
                 "id": "dfw1-messenger",
                 "session_id": "sessionId",
                 "tags": [
@@ -518,15 +537,6 @@ returned.
                     "port": "5757",
                     "ip": "127.0.0.1"
                 }
-            }
-        },
-        {
-            "type": "service.join",
-            "payload": {
-                "id": "dfw1-api",
-                "session_id": "sessionId",
-                "tags": [],
-                "metadata": {}
             }
         },
         {

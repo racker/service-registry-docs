@@ -71,7 +71,7 @@ session.
 
 Next, you'll want to add services to the session. Service IDs are user
 provided, and must be unique across the whole account. Let's say our
-service name is 'my-server1-api1'. The way to create a service is to POST to
+service name is 'dfw1-messenger'. The way to create a service is to POST to
 /services with a body containing the service ID, the session ID that the
 service should belong to, optional metadata, and optional tags:
 
@@ -86,13 +86,23 @@ The body would look like this:
 
 ```javascript
 {
-    "id": "dfw1-api",
+    "tags": [
+        "tag1",
+        "tag2",
+        "tag3"
+    ],
+    "metadata": {
+        "region": "dfw",
+        "port": "5757",
+        "ip": "127.0.0.1"
+    },
+    "id": "dfw1-messenger",
     "session_id": "sessionId"
 }
 ```
 
-Let's say you also added a service called 'dfw1-messenger', with a few tags
-and some metadata. If you GET /services, you should see this:
+Let's say you also added a service called 'dfw1-api' without any tags
+or metadata. If you GET /services, you should see this:
 
 ```javascript
 {
