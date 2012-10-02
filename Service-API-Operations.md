@@ -243,17 +243,17 @@ Error Response Codes: 401, 403, 500, 503
             "metadata": {}
         },
         {
-            "id": "dfw1-messenger",
+            "id": "dfw1-db1",
             "session_id": "sessionId",
             "tags": [
-                "tag1",
-                "tag2",
-                "tag3"
+                "db",
+                "mysql"
             ],
             "metadata": {
                 "region": "dfw",
-                "port": "5757",
-                "ip": "127.0.0.1"
+                "port": "3306",
+                "ip": "127.0.0.1",
+                "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
             }
         }
     ],
@@ -266,23 +266,23 @@ Error Response Codes: 401, 403, 500, 503
 }
 ```
 
-#### List Services Response (filtering on a tag - /services?tag=tag1)
+#### List Services Response (filtering on a tag - /services?tag=db)
 
 ```javascript
 {
     "values": [
         {
-            "id": "dfw1-messenger",
+            "id": "dfw1-db1",
             "session_id": "sessionId",
             "tags": [
-                "tag1",
-                "tag2",
-                "tag3"
+                "db",
+                "mysql"
             ],
             "metadata": {
                 "region": "dfw",
-                "port": "5757",
-                "ip": "127.0.0.1"
+                "port": "3306",
+                "ip": "127.0.0.1",
+                "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
             }
         }
     ],
@@ -311,17 +311,17 @@ Error Response Codes: 401, 403, 500, 503
 
 ```javascript
 {
-    "id": "dfw1-messenger",
+    "id": "dfw1-db1",
     "session_id": "sessionId",
     "tags": [
-        "tag1",
-        "tag2",
-        "tag3"
+        "db",
+        "mysql"
     ],
     "metadata": {
         "region": "dfw",
-        "port": "5757",
-        "ip": "127.0.0.1"
+        "port": "3306",
+        "ip": "127.0.0.1",
+        "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
     }
 }
 ```
@@ -342,16 +342,16 @@ Error Response Codes: 400, 401, 403, 500, 503
 ```javascript
 {
     "tags": [
-        "tag1",
-        "tag2",
-        "tag3"
+        "db",
+        "mysql"
     ],
     "metadata": {
         "region": "dfw",
-        "port": "5757",
-        "ip": "127.0.0.1"
+        "port": "3306",
+        "ip": "127.0.0.1",
+        "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
     },
-    "id": "dfw1-messenger",
+    "id": "dfw1-db1",
     "session_id": "sessionId"
 }
 ```
@@ -525,17 +525,17 @@ returned.
         {
             "type": "service.join",
             "payload": {
-                "id": "dfw1-messenger",
+                "id": "dfw1-db1",
                 "session_id": "sessionId",
                 "tags": [
-                    "tag1",
-                    "tag2",
-                    "tag3"
+                    "db",
+                    "mysql"
                 ],
                 "metadata": {
                     "region": "dfw",
-                    "port": "5757",
-                    "ip": "127.0.0.1"
+                    "port": "3306",
+                    "ip": "127.0.0.1",
+                    "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
                 }
             }
         },
@@ -600,17 +600,17 @@ child service objects.
                     "metadata": {}
                 },
                 {
-                    "id": "dfw1-messenger",
+                    "id": "dfw1-db1",
                     "session_id": "seId0",
                     "tags": [
-                        "tag1",
-                        "tag2",
-                        "tag3"
+                        "db",
+                        "mysql"
                     ],
                     "metadata": {
                         "region": "dfw",
-                        "port": "5757",
-                        "ip": "127.0.0.1"
+                        "port": "3306",
+                        "ip": "127.0.0.1",
+                        "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
                     }
                 }
             ]
