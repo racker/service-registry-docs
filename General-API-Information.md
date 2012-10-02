@@ -90,8 +90,8 @@ collection without having to input the limit parameter.
         "count": 1,
         "limit": 1,
         "marker": null,
-        "next_marker": "dfw1-messenger",
-        "next_href": "https://todo.api.rackspacecloud.com/v1.0/7777/services?limit=1&marker=dfw1-messenger"
+        "next_marker": "dfw1-db1",
+        "next_href": "https://todo.api.rackspacecloud.com/v1.0/7777/services?limit=1&marker=dfw1-db1"
     }
 }
 ```
@@ -102,24 +102,24 @@ collection without having to input the limit parameter.
 {
     "values": [
         {
-            "id": "dfw1-messenger",
+            "id": "dfw1-db1",
             "session_id": "seOne",
             "tags": [
-                "tag1",
-                "tag2",
-                "tag3"
+                "db",
+                "mysql"
             ],
             "metadata": {
                 "region": "dfw",
-                "port": "5757",
-                "ip": "127.0.0.1"
+                "port": "3306",
+                "ip": "127.0.0.1",
+                "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
             }
         }
     ],
     "metadata": {
         "count": 1,
         "limit": 100,
-        "marker": "dfw1-messenger",
+        "marker": "dfw1-db1",
         "next_href": null
     }
 }

@@ -71,7 +71,7 @@ session.
 
 Next, you'll want to add services to the session. Service IDs are user
 provided, and must be unique across the whole account. Let's say our
-service name is 'dfw1-messenger'. The way to create a service is to POST to
+service name is 'dfw1-db1'. The way to create a service is to POST to
 /services with a body containing the service ID, the session ID that the
 service should belong to, optional metadata, and optional tags:
 
@@ -87,16 +87,16 @@ The body would look like this:
 ```javascript
 {
     "tags": [
-        "tag1",
-        "tag2",
-        "tag3"
+        "db",
+        "mysql"
     ],
     "metadata": {
         "region": "dfw",
-        "port": "5757",
-        "ip": "127.0.0.1"
+        "port": "3306",
+        "ip": "127.0.0.1",
+        "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
     },
-    "id": "dfw1-messenger",
+    "id": "dfw1-db1",
     "session_id": "sessionId"
 }
 ```
@@ -114,17 +114,17 @@ or metadata. If you GET /services, you should see this:
             "metadata": {}
         },
         {
-            "id": "dfw1-messenger",
+            "id": "dfw1-db1",
             "session_id": "sessionId",
             "tags": [
-                "tag1",
-                "tag2",
-                "tag3"
+                "db",
+                "mysql"
             ],
             "metadata": {
                 "region": "dfw",
-                "port": "5757",
-                "ip": "127.0.0.1"
+                "port": "3306",
+                "ip": "127.0.0.1",
+                "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
             }
         }
     ],
@@ -140,7 +140,7 @@ or metadata. If you GET /services, you should see this:
 You can also GET services by tag:
 
 ```shell
-GET /services?tag=tag1 HTTP/1.1
+GET /services?tag=db HTTP/1.1
 Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
@@ -152,17 +152,17 @@ and the response would look like this:
 {
     "values": [
         {
-            "id": "dfw1-messenger",
+            "id": "dfw1-db1",
             "session_id": "sessionId",
             "tags": [
-                "tag1",
-                "tag2",
-                "tag3"
+                "db",
+                "mysql"
             ],
             "metadata": {
                 "region": "dfw",
-                "port": "5757",
-                "ip": "127.0.0.1"
+                "port": "3306",
+                "ip": "127.0.0.1",
+                "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
             }
         }
     ],
@@ -175,8 +175,8 @@ and the response would look like this:
 }
 ```
 
-To change the dfw1-messenger service (for example, update its metadata),
-you can do an HTTP PUT request to /services/dfw1-messenger with a body that
+To change the dfw1-db1 service (for example, update its metadata),
+you can do an HTTP PUT request to /services/dfw1-db1 with a body that
 contains the new metadata that you'd like the service to have.
 
 ### Heartbeat the Session
