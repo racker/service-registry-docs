@@ -237,7 +237,7 @@ URL the client will use to authenticate. You can specify either 'us' or
 'uk'.
 
 Now that we've created a Client object, we can use it to work with the
-various Cloud Service Registry APIS. Creating a session is straightforward:
+Cloud Service Registry API. Creating a session is straightforward:
 
 ```Python
 def cb(result):
