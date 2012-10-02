@@ -189,6 +189,10 @@ Error Response Codes: 400, 401, 403, 404, 500, 503
 
 ## Services
 
+A service represents an instance of a long running process on your server.
+Each service belongs to a single session which must be periodically
+heartbeated to indicate that the session and its services are still alive.
+
 ### Attributes
 
 Name | Description | Validation
@@ -198,6 +202,19 @@ id | Service id | Immutable, String between 3 and 55 characters long, String mat
 metadata | Arbitrary key/value pairs. | Optional, Hash [String,String between 1 and 255 characters long:String,String between 1 and 255 characters long], Array or object with number of items between 0 and 20
 tags | Service tags. | Optional, Array [String,String between 1 and 55 characters long], Array or object with number of items between 0 and 10
 
+
+`tag` field allows you to logically group services (e.g. tagging all the API
+service instances with `www`) and retrieve a list of services for a particular
+tag.
+
+`metadata` field allows you to store arbitrary key-value pairs on a service
+object. Common fields include:
+
+* service instance version (e.g. git revision hash)
+* service instance IP address
+* service instance port
+* service instance region
+* status (e.g. enabled or disabled)
 
 ### List Services
 
