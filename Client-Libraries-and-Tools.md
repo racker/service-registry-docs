@@ -13,7 +13,7 @@ be found at [https://github.com/racker/node-service-registry-client](https://git
 #### Installation
 
 ```shell
-npm install rackspace-cloud-registry-client
+npm install service-registry-client
 ```
 
 ### Twisted Python
@@ -24,7 +24,7 @@ API can be found at [https://github.com/racker/python-twisted-service-registry-c
 #### Installation
 
 ```shell
-pip install rackspace-cloud-registry-client
+pip install service-registry-client
 ```
 
 ### Java
