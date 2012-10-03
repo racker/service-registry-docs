@@ -359,3 +359,91 @@ d.addCallback(cbSession)
 The cbSesssion function takes the result of client.sessions.create() as an
 argument, and grabs the session ID as well as starts the HeartBeater. It
 then creates a service named 'http-service' and attaches it to the session.
+
+## Using the Node.js client
+
+### Installing the client
+
+The client is available in npm. To install, you can do:
+
+```Shell
+npm install service-registry-client
+```
+
+### Create a session
+
+In order to create a session using the Node.js client, we first have
+to instantiate a client to interact with the Cloud Service Registry:
+
+```Javascript
+var Client = require('service-registry-client').Client;
+
+var username = ''; # your username here
+var key = ''; # your API key here
+var service_registry_url = 'https://dfw.registry.api.rackspace.com/v1.0/';
+
+var client = new Client(username, key, 'us', {'url': service_registry_url});
+```
+
+The region keyword argument above determines which Rackspace authentication
+URL the client will use to authenticate. You can specify either 'us' or
+'uk'.
+
+Now that we've created a Client object, we can use it to work with the
+Cloud Service Registry API. Creating a session is straightforward:
+
+```Javascript
+client.sessions.create(30, {}, function(err, seId, resp, heartbeater) {
+});
+```
+
+### Add Services
+
+We also now have the session ID (let's say it's 'seMkzI0mxC'), so we can
+start adding services to the session:
+
+```Javascript
+client.services.register('seMkzI0mxC', 'serviceId', {'tags': ['tag1', 'tag2', 'tag3']}, null, function(err, resp) {
+});
+```
+
+### Heartbeat the Session
+
+When creating a session using the Node.js client, the result contains the
+session ID, response body (which contains the initial token required for
+heartbeating the session), and a HeartBeater object. The HeartBeater
+object allows us to automatically heartbeat the session by calling the
+start() method:
+
+```Javascript
+heartbeater.start();
+```
+
+This causes the HeartBeater object to start heartbeating automatically,
+using the initial token. It will heartbeat the session, get the next token,
+and heartbeat the session again continuously until the stop() method is
+called.
+
+You may also heartbeat the session manually with
+```Javascript
+client.sessions.heartbeat('seMkzI0mxC', 'token', function(err, resp) {
+});
+```
+
+### Integration Example
+
+Here is a short example of a web server that registers with the Cloud
+Service Registry on startup, and uses the HeartBeater object while it is
+running in order to maintain the session:
+
+```Javascript
+```
+
+The code above is a simple web server that responds with "<html>Hello,
+world!</html> on every GET request. The code that interacts with the Cloud
+Service Registry can be explained as follows:
+
+First, the server creates a session with a heartbeat interval of 30.
+
+```Javascript
+```
