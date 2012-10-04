@@ -39,7 +39,7 @@ Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
 
-Example request body:
+#### Example Create Session Request Body
 
 ```javascript
 {
@@ -56,7 +56,7 @@ https://TODO/v1.0/1234/sessions/seMkzI0mxC
 
 The last part of the location header, seMkzI0mxC, is the session ID.
 
-The response body should look something like this:
+#### Example Create Session Response
 
 ```javascript
 {
@@ -82,7 +82,7 @@ Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
 
-The body would look like this:
+#### Example Create Service Request Body
 
 ```javascript
 {
@@ -103,6 +103,8 @@ The body would look like this:
 
 Let's say you also added a service called 'dfw1-api' without any tags
 or metadata. If you GET /services, you should see this:
+
+#### Example GET /services Response
 
 ```javascript
 {
@@ -148,6 +150,8 @@ X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 
 and the response would look like this:
 
+#### Example Get Services By Tag Response
+
 ```javascript
 {
     "values": [
@@ -192,6 +196,8 @@ X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
 
 The request body would look like this:
+
+#### Example Heartbeat Sesssion Request Body
 
 ```javascript
 {
