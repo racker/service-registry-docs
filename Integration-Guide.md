@@ -442,9 +442,8 @@ var Client = require('farscape-client/lib/client').Client
 
 var username = ''; // your username here
 var key = ''; // your API key here
-var service_registry_url = 'https://fs-staging.k1k.me/v1.0/';
 
-var client = new Client(username, key, null, {'url': service_registry_url});
+var client = new Client(username, key, 'us', null);
 
 var http = require('http');
 http.createServer(function (req, res) {
