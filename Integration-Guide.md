@@ -437,11 +437,46 @@ Service Registry on startup, and uses the HeartBeater object while it is
 running in order to maintain the session:
 
 ```Javascript
+var async = require('async');
+var Client = require('farscape-client/lib/client').Client
+
+var username = ''; // your username here
+var key = ''; // your API key here
+var service_registry_url = 'https://fs-staging.k1k.me/v1.0/';
+
+var client = new Client(username, key, null, {'url': service_registry_url});
+
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello, world!');
+}).listen(9000, '127.0.0.1');
+
+async.waterfall([
+  function createSession(callback) {
+    client.sessions.create(30, {}, function(err, seId, resp, hb) {
+      hb.start();
+      callback(null, seId);
+    });
+  },
+  function createService(seId, callback) {
+    client.services.create(seId, 'webService', {}, function(err, resp) {
+      callback();
+    });
+  }
+  ],
+  function(err) {
+    if (err) {
+      console.log('An error has occurred.');
+      console.log(err);
+    }
+  }
+);
 ```
 
-The code above is a simple web server that responds with "<html>Hello,
-world!</html> on every GET request. The code that interacts with the Cloud
-Service Registry can be explained as follows:
+The code above is a simple web server that responds with "Hello, world!"
+The code that interacts with the Cloud Service Registry can be
+explained as follows:
 
 First, the server creates a session with a heartbeat interval of 30.
 
