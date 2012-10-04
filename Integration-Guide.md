@@ -480,4 +480,24 @@ explained as follows:
 First, the server creates a session with a heartbeat interval of 30.
 
 ```Javascript
+function createSession(callback) {
+  client.sessions.create(30, {}, function(err, seId, resp, hb) {
+    hb.start();
+    callback(null, seId);
+  });
+},
+```
+
+This function also calls start() on the HeartBeater object that is returned
+when creating a session.
+
+Next, a service called 'webService' is created under the session ID
+returned from the API:
+
+```Javascript
+function createService(seId, callback) {
+  client.services.create(seId, 'webService', {}, function(err, resp) {
+    callback();
+  });
+}
 ```
