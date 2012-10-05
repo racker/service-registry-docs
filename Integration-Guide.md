@@ -225,16 +225,17 @@ heartbeating the session.
 
 The client is available in the Python Package Index. To install, you can do:
 
-```Shell
+```shell
 pip install txServiceRegistry
 ```
 
-### Create a session
+### Create a session (Python)
 
 In order to create a session using the Twisted Python client, we first have
 to instantiate a client to interact with the Rackspace Service Registry:
 
-#### Instantiate the Client
+#### Instantiate the Client (Python)
+
 ```python
 from txServiceRegistry.client import Client
 from twisted.internet import reactor
@@ -258,6 +259,7 @@ Now that we've created a Client object, we can use it to work with the
 Rackspace Service Registry API. Creating a session is straightforward:
 
 #### Create Session
+
 ```python
 def cb(result):
     token = result[0]['token']
@@ -276,7 +278,8 @@ reactor.run()
 We also now have the session ID (let's say it's 'seMkzI0mxC'), so we can
 start adding services to the session:
 
-#### Register Service
+#### Register Service (Python)
+
 ```python
 def cb(result):
     serviceId = result
@@ -296,7 +299,7 @@ the session), the session ID, and a HeartBeater object. The HeartBeater
 object allows us to automatically heartbeat the session by calling the
 start() method:
 
-```Python
+```python
 heartbeater.start()
 ```
 
@@ -307,7 +310,8 @@ called.
 
 You may also heartbeat the session manually like so:
 
-#### Heartbeat Session Manually
+#### Heartbeat Session Manually (Python)
+
 ```python
 client.sessions.heartbeat('seMkzI0mxC', 'token')
 
@@ -319,7 +323,8 @@ Here is a short example of a web server that registers with the Cloud
 Service Registry on startup, and uses the HeartBeater object while it is
 running in order to maintain the session:
 
-#### A Web Server That Uses Service Registry
+#### A Web Server That Uses Service Registry (Python)
+
 ```python
 from twisted.web import server, resource
 from twisted.internet import reactor
@@ -370,7 +375,7 @@ First, the server creates a session with a heartbeat interval of 30. Since
 client.sessions.create() returns a Twisted Deferred, a callback must be
 added to it in order to use the result. This is done here:
 
-```Python
+```python
 d = client.sessions.create(30)
 d.addCallback(cbSession)
 ```
@@ -385,7 +390,7 @@ then creates a service named 'http-service' and attaches it to the session.
 
 The client is available in npm. To install, you can do:
 
-```Shell
+```shell
 npm install service-registry-client
 ```
 
@@ -394,7 +399,8 @@ npm install service-registry-client
 In order to create a session using the Node.js client, we first have
 to instantiate a client to interact with the Rackspace Service Registry:
 
-#### Instantiate the Client
+#### Instantiate the Client (Javascript)
+
 ```javascript
 var Client = require('service-registry-client').Client;
 
@@ -413,7 +419,8 @@ URL the client will use to authenticate. You can specify either 'us' or
 Now that we've created a Client object, we can use it to work with the
 Rackspace Service Registry API. Creating a session is straightforward:
 
-#### Create Session
+#### Create Session (Javascript)
+
 ```javascript
 client.sessions.create(30, {}, function(err, seId, resp, heartbeater) {});
 
@@ -424,7 +431,8 @@ client.sessions.create(30, {}, function(err, seId, resp, heartbeater) {});
 We also now have the session ID (let's say it's 'seMkzI0mxC'), so we can
 start adding services to the session:
 
-#### Register Service
+#### Register Service (Javascript)
+
 ```javascript
 client.services.register('seMkzI0mxC',
                          'serviceId',
@@ -452,7 +460,8 @@ called.
 
 You may also heartbeat the session manually like so:
 
-#### Heartbeat Session Manually
+#### Heartbeat Session Manually (Javascript)
+
 ```javascript
 client.sessions.heartbeat('seMkzI0mxC', 'token', function(err, resp) {});
 
@@ -464,7 +473,8 @@ Here is a short example of a web server that registers with the Cloud
 Service Registry on startup, and uses the HeartBeater object while it is
 running in order to maintain the session:
 
-#### A Web Server That Uses Service Registry
+#### A Web Server That Uses Service Registry (Javascript)
+
 ```javascript
 var async = require('async');
 var Client = require('farscape-client/lib/client').Client
