@@ -22,7 +22,7 @@ has joined, when a session has timed out, and more.
 The first thing you will want to do when using the Rackspace Service Registry
 is create a session.
 
-As described in the [Session](TODO) section of the Concepts document,
+As described in the Session section of the Concepts document,
 sessions enable clients to create persistent sessions on the server that
 are used as a context for other operations. Clients should first create a
 session and heartbeat it to maintain the session.
@@ -52,7 +52,7 @@ X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 
 The location header of the response should look something like this:
 
-https://TODO/v1.0/1234/sessions/seMkzI0mxC
+https://dfw.registry.api.rackspacecloud.com/v1.0/1234/sessions/seMkzI0mxC
 
 The last part of the location header, seMkzI0mxC, is the session ID.
 

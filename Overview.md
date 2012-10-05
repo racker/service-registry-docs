@@ -56,7 +56,7 @@ to an active Rackspace account. You should also be familiar with:
 ## Additional Resources
 
 You can download the most current version of this document from the
-Rackspace Cloud website at TODO.
+Rackspace Cloud website at (http://docs.rackspace.com/api/)[http://docs.rackspace.com/api/].
 
 For more information about Rackspace Cloud products, please refer to
 [http://www.rackspace.com/cloud](http://www.rackspace.com/cloud). This site

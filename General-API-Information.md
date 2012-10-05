@@ -18,7 +18,7 @@ https://dfw.registry.api.rackspacecloud.com/v1.0/1234
 Replace the sample account ID number, 1234, with your actual account number.
 Your account number is returned as part of the authentication service
 response, after the final '/' in the X-Server-Management-Url header. See
-[Authentication](TODO) for more information.
+Authentication for more information.
 
 ## Request / Response Types
 
