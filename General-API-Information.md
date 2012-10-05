@@ -1,12 +1,12 @@
 # General API Information
 
-The Rackspace Cloud Service Registry API provides a RESTful web service
+The Rackspace Service Registry API provides a RESTful web service
 interface. All requests to authenticate and operate against the Rackspace
-Cloud Service Registry API are performed using SSL over HTTPS on TCP port 443.
+Rackspace Service Registry API are performed using SSL over HTTPS on TCP port 443.
 
 ## Endpoint Access
 
-Rackspace Cloud Service Registry runs as a separate instance in multiple
+Rackspace Service Registry runs as a separate instance in multiple
 regions. You are advised to pick the region which is closest to your
 servers.
 
@@ -22,7 +22,7 @@ response, after the final '/' in the X-Server-Management-Url header. See
 
 ## Request / Response Types
 
-The Rackspace Cloud Service Registry API supports JSON data serialization
+The Rackspace Service Registry API supports JSON data serialization
 format. The request format is specified using the Content-Type header and is
 required for operations that have a request body.
 
@@ -34,7 +34,7 @@ JSON | application/json
 
 ## Versions
 
-The Rackspace Cloud Service Registry API uses a URI versioning scheme. In the
+The Rackspace Service Registry API uses a URI versioning scheme. In the
 URI scheme, the first element of the path contains the target version
 identifier (e.g. https://dfw.registry.api.rackspacecloud.com/v1.0/…).
 

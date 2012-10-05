@@ -1,12 +1,12 @@
 # Integration Guide
 
-This document will explain how to integrate Cloud Service Registry clients,
+This document will explain how to integrate Rackspace Service Registry clients,
 into your applications and also contains an example on how to integrate
 the Twisted Python client into your Twisted-powered application.
 
 ## General Flow
 
-The general flow when registering a service with Cloud Service Registry is:
+The general flow when registering a service with Rackspace Service Registry is:
 
 * Create a session.
 * Add service(s) to the session.
@@ -19,7 +19,7 @@ has joined, when a session has timed out, and more.
 
 ### Create a session
 
-The first thing you will want to do when using the Cloud Service Registry
+The first thing you will want to do when using the Rackspace Service Registry
 is create a session.
 
 As described in the [Session](TODO) section of the Concepts document,
@@ -215,8 +215,8 @@ section.
 
 ## Using the Twisted Python client
 
-All of the Service Registry functionality has been abstracted away in various
-clients for popular programming languages such as Java, Node.js, and Python. In
+All of the functionality above has been abstracted away in various clients
+for popular programming languages such as Java, Node.js, and Python. In
 this section, we'll see how to use the Twisted Python client to go through
 the same flow of creating a session, adding services to it, and
 heartbeating the session.
@@ -232,10 +232,9 @@ pip install txServiceRegistry
 ### Create a session
 
 In order to create a session using the Twisted Python client, we first have
-to instantiate a client to interact with the Cloud Service Registry:
+to instantiate a client to interact with the Rackspace Service Registry:
 
-#### Instantiate the Client
-```python
+```Python
 from txServiceRegistry.client import Client
 from twisted.internet import reactor
 
@@ -247,7 +246,6 @@ client = Client(username=RACKSPACE_USERNAME,
                 apiKey=RACKSPACE_KEY,
                 baseUrl=SERVICE_REGISTRY_URL,
                 region='us')
-
 ```
 
 The region keyword argument above determines which Rackspace authentication
@@ -255,10 +253,9 @@ URL the client will use to authenticate. You can specify either 'us' or
 'uk'.
 
 Now that we've created a Client object, we can use it to work with the
-Cloud Service Registry API. Creating a session is straightforward:
+Rackspace Service Registry API. Creating a session is straightforward:
 
-#### Create Session
-```python
+```Python
 def cb(result):
     token = result[0]['token']
     sessionId = result[1]
@@ -268,7 +265,6 @@ d = client.sessions.create(30)
 d.addCallback(cb)
 
 reactor.run()
-
 ```
 
 ### Add Services
@@ -276,8 +272,7 @@ reactor.run()
 We also now have the session ID (let's say it's 'seMkzI0mxC'), so we can
 start adding services to the session:
 
-#### Register Service
-```python
+```Python
 def cb(result):
     serviceId = result
 
@@ -285,7 +280,6 @@ d = client.services.register('seMkzI0mxC', 'serviceId', {'tags': ['tag1', 'tag2'
 d.addCallback(cb)
 
 reactor.run()
-
 ```
 
 ### Heartbeat the Session
@@ -305,13 +299,8 @@ using the initial token. It will heartbeat the session, get the next token,
 and heartbeat the session again continuously until the stop() method is
 called.
 
-You may also heartbeat the session manually like so:
-
-#### Heartbeat Session Manually
-```python
-client.sessions.heartbeat('seMkzI0mxC', 'token')
-
-```
+You may also heartbeat the session manually with `client.sessions.
+heartbeat('seMkzI0mxC', 'token')`
 
 ### Integration Example
 
@@ -319,8 +308,7 @@ Here is a short example of a web server that registers with the Cloud
 Service Registry on startup, and uses the HeartBeater object while it is
 running in order to maintain the session:
 
-#### A Web Server That Uses Service Registry
-```python
+```Python
 from twisted.web import server, resource
 from twisted.internet import reactor
 
@@ -359,7 +347,6 @@ d.addCallback(cbSession)
 site = server.Site(Simple())
 reactor.listenTCP(8080, site)
 reactor.run()
-
 ```
 
 The code above is a simple web server that responds with "<html>Hello,
@@ -392,10 +379,9 @@ npm install service-registry-client
 ### Create a session
 
 In order to create a session using the Node.js client, we first have
-to instantiate a client to interact with the Cloud Service Registry:
+to instantiate a client to interact with the Rackspace Service Registry:
 
-#### Instantiate the Client
-```javascript
+```Javascript
 var Client = require('service-registry-client').Client;
 
 var username = ''; // your username here
@@ -403,7 +389,6 @@ var key = ''; // your API key here
 var service_registry_url = 'https://dfw.registry.api.rackspace.com/v1.0/';
 
 var client = new Client(username, key, 'us', {'url': service_registry_url});
-
 ```
 
 The region keyword argument above determines which Rackspace authentication
@@ -411,12 +396,11 @@ URL the client will use to authenticate. You can specify either 'us' or
 'uk'.
 
 Now that we've created a Client object, we can use it to work with the
-Cloud Service Registry API. Creating a session is straightforward:
+Rackspace Service Registry API. Creating a session is straightforward:
 
-#### Create Session
-```javascript
-client.sessions.create(30, {}, function(err, seId, resp, heartbeater) {});
-
+```Javascript
+client.sessions.create(30, {}, function(err, seId, resp, heartbeater) {
+});
 ```
 
 ### Add Services
@@ -424,13 +408,9 @@ client.sessions.create(30, {}, function(err, seId, resp, heartbeater) {});
 We also now have the session ID (let's say it's 'seMkzI0mxC'), so we can
 start adding services to the session:
 
-#### Register Service
-```javascript
-client.services.register('seMkzI0mxC',
-                         'serviceId',
-                         {'tags': ['tag1', 'tag2', 'tag3']},
-                         null, function(err, resp) {});
-
+```Javascript
+client.services.register('seMkzI0mxC', 'serviceId', {'tags': ['tag1', 'tag2', 'tag3']}, null, function(err, resp) {
+});
 ```
 
 ### Heartbeat the Session
@@ -450,12 +430,10 @@ using the initial token. It will heartbeat the session, get the next token,
 and heartbeat the session again continuously until the stop() method is
 called.
 
-You may also heartbeat the session manually like so:
-
-#### Heartbeat Session Manually
-```javascript
-client.sessions.heartbeat('seMkzI0mxC', 'token', function(err, resp) {});
-
+You may also heartbeat the session manually with
+```Javascript
+client.sessions.heartbeat('seMkzI0mxC', 'token', function(err, resp) {
+});
 ```
 
 ### Integration Example
@@ -464,8 +442,7 @@ Here is a short example of a web server that registers with the Cloud
 Service Registry on startup, and uses the HeartBeater object while it is
 running in order to maintain the session:
 
-#### A Web Server That Uses Service Registry
-```javascript
+```Javascript
 var async = require('async');
 var Client = require('farscape-client/lib/client').Client
 
@@ -488,7 +465,7 @@ async.waterfall([
     });
   },
   function createService(seId, callback) {
-    client.services.register(seId, 'webService', {}, function(err, resp) {
+    client.services.create(seId, 'webService', {}, function(err, resp) {
       callback();
     });
   }
@@ -500,24 +477,21 @@ async.waterfall([
     }
   }
 );
-
 ```
 
 The code above is a simple web server that responds with "Hello, world!"
-The code that interacts with the Cloud Service Registry can be
+The code that interacts with the Rackspace Service Registry can be
 explained as follows:
 
 First, the server creates a session with a heartbeat interval of 30.
 
-#### Create Session in Web Server
-```javascript
+```Javascript
 function createSession(callback) {
   client.sessions.create(30, {}, function(err, seId, resp, hb) {
     hb.start();
     callback(null, seId);
   });
 },
-
 ```
 
 This function also calls start() on the HeartBeater object that is returned
@@ -526,12 +500,10 @@ when creating a session.
 Next, a service called 'webService' is created under the session ID
 returned from the API:
 
-#### Register Service in Web Server
-```javascript
+```Javascript
 function createService(seId, callback) {
   client.services.create(seId, 'webService', {}, function(err, resp) {
     callback();
   });
 }
-
 ```
