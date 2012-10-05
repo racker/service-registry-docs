@@ -1,8 +1,8 @@
 # Overview
 
-## What is Cloud Service Registry
+## What is Rackspace Service Registry
 
-Rackspace Cloud Service Registry allows developers to build highly
+Rackspace Service Registry allows developers to build highly
 available and responsive applications using a simple but powerful REST API.
 Currently it exposes three groups of functionalities:
 
@@ -41,12 +41,12 @@ For more information about the basic foundations of this API, refer to
 ## Intended Audience
 
 This document is intended for software developers interested in developing
-applications that use the Rackspace Cloud Service Registry product. It describes
-each API call, its associated options, and provides examples of successful
-and failed responses.
+applications that use the Rackspace Service Registry product. It
+describes each API call, its associated options, and provides examples of
+successful and failed responses.
 
 To use the information provided here, you should first have a general
-understanding of the Rackspace Cloud Service Registry service and have access
+understanding of the Rackspace Service Registry service and have access
 to an active Rackspace account. You should also be familiar with:
 
 * RESTful web services
@@ -56,7 +56,7 @@ to an active Rackspace account. You should also be familiar with:
 ## Additional Resources
 
 You can download the most current version of this document from the
-Rackspace Cloud website at TODO.
+Rackspace Cloud website at (http://docs.rackspace.com/api/)[http://docs.rackspace.com/api/].
 
 For more information about Rackspace Cloud products, please refer to
 [http://www.rackspace.com/cloud](http://www.rackspace.com/cloud). This site

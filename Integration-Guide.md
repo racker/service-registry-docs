@@ -1,12 +1,12 @@
 # Integration Guide
 
-This document will explain how to integrate Cloud Service Registry clients,
+This document will explain how to integrate Rackspace Service Registry clients,
 into your applications and also contains an example on how to integrate
 the Twisted Python client into your Twisted-powered application.
 
 ## General Flow
 
-The general flow when registering a service with Cloud Service Registry is:
+The general flow when registering a service with Rackspace Service Registry is:
 
 * Create a session.
 * Add service(s) to the session.
@@ -19,10 +19,10 @@ has joined, when a session has timed out, and more.
 
 ### Create a session
 
-The first thing you will want to do when using the Cloud Service Registry
+The first thing you will want to do when using the Rackspace Service Registry
 is create a session.
 
-As described in the [Session](TODO) section of the Concepts document,
+As described in the Session section of the Concepts document,
 sessions enable clients to create persistent sessions on the server that
 are used as a context for other operations. Clients should first create a
 session and heartbeat it to maintain the session.
@@ -52,7 +52,7 @@ X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 
 The location header of the response should look something like this:
 
-https://TODO/v1.0/1234/sessions/seMkzI0mxC
+https://dfw.registry.api.rackspacecloud.com/v1.0/1234/sessions/seMkzI0mxC
 
 The last part of the location header, seMkzI0mxC, is the session ID.
 
@@ -232,7 +232,7 @@ pip install txServiceRegistry
 ### Create a session
 
 In order to create a session using the Twisted Python client, we first have
-to instantiate a client to interact with the Cloud Service Registry:
+to instantiate a client to interact with the Rackspace Service Registry:
 
 #### Instantiate the Client
 ```python
@@ -255,7 +255,7 @@ URL the client will use to authenticate. You can specify either 'us' or
 'uk'.
 
 Now that we've created a Client object, we can use it to work with the
-Cloud Service Registry API. Creating a session is straightforward:
+Rackspace Service Registry API. Creating a session is straightforward:
 
 #### Create Session
 ```python
@@ -392,7 +392,7 @@ npm install service-registry-client
 ### Create a session
 
 In order to create a session using the Node.js client, we first have
-to instantiate a client to interact with the Cloud Service Registry:
+to instantiate a client to interact with the Rackspace Service Registry:
 
 #### Instantiate the Client
 ```javascript
@@ -411,7 +411,7 @@ URL the client will use to authenticate. You can specify either 'us' or
 'uk'.
 
 Now that we've created a Client object, we can use it to work with the
-Cloud Service Registry API. Creating a session is straightforward:
+Rackspace Service Registry API. Creating a session is straightforward:
 
 #### Create Session
 ```javascript
@@ -504,7 +504,7 @@ async.waterfall([
 ```
 
 The code above is a simple web server that responds with "Hello, world!"
-The code that interacts with the Cloud Service Registry can be
+The code that interacts with the Rackspace Service Registry can be
 explained as follows:
 
 First, the server creates a session with a heartbeat interval of 30.
