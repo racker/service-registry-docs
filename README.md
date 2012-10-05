@@ -1,6 +1,6 @@
-# Service Registry Documentation
+# Rackspace Service Registry Documentation
 
-This repository contains documentation in Markdown format for Rackspace Cloud
+This repository contains documentation in Markdown format for Rackspace
 Service Registry.
 
 ## Contributing
