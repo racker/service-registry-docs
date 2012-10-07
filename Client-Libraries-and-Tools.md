@@ -32,10 +32,6 @@ pip install service-registry-client
 The official Java library which allows you to interact with the API can be
 found at [https://github.com/racker/java-service-registry-client](https://github.com/racker/java-service-registry-client).
 
-#### Installation
-
-TODO
-
 ## Best Practices For Writing Client Libraries
 
 This section describes best practices which you should follow if you are
