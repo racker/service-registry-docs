@@ -24,6 +24,17 @@ API can be found at [https://github.com/racker/python-twisted-service-registry-c
 #### Installation
 
 ```shell
+pip install txServiceRegistry
+```
+
+### Python
+
+The official Python library which allows you to interact with the
+API can be found at [https://github.com/racker/python-service-registry-client](https://github.com/racker/python-service-registry-client).
+
+#### Installation
+
+```shell
 pip install service-registry-client
 ```
 
