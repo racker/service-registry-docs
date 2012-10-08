@@ -48,17 +48,18 @@ the API. We'll show you how in the next section.
 You'll need your username and API key in order to authenticate. You can find
 your API key like so:
 
-1. Log into the Control Panel at https://mycloud.rackspacecloud.com.
+* Log into the Control Panel at https://mycloud.rackspacecloud.com.
 
-2. When the site loads, click your username in the upper-right corner of the
+* When the site loads, click your username in the upper-right corner of the
 window. Your username appears as the menu title. Select API Keys from the
 drop-down menu. The API Access page appears.
 
-3. From the API Access page you can generate a new key or Show/Hide an
+* From the API Access page you can generate a new key or Show/Hide an
 existing key.
 
 Once you have the API key, you can make a request to authenticate like so:
 
+### Using cURL to Authenticate
 ```shell
 curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d
 '{ "auth":{ "RAX-KSKEY:apiKeyCredentials":{ "username":"theUserName", "apiKey":"00a00000a000a0000000a000a00aaa0a" } } }' -H "Content-type: application/json"
