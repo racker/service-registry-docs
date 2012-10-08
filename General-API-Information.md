@@ -49,11 +49,9 @@ You'll need your username and API key in order to authenticate. You can find
 your API key like so:
 
 * Log into the Control Panel at https://mycloud.rackspacecloud.com.
-
 * When the site loads, click your username in the upper-right corner of the
 window. Your username appears as the menu title. Select API Keys from the
 drop-down menu. The API Access page appears.
-
 * From the API Access page you can generate a new key or Show/Hide an
 existing key.
 
