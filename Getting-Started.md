@@ -41,6 +41,10 @@ raxsr services list --user='username' --api-key='api key'
 You can also inspect the events feed and there should be a service.join
 event:
 
+```shell
+raxsr events list --user='username' --api-key='api key'
+```
+
 ### Service Registry CLI Events List
 ```shell
 +--------------------------------------+---------------------+------------------+------------------------+
