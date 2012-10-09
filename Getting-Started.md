@@ -10,4 +10,30 @@ Node.js libraries, take a look at the Integration Guide.
 Now that you've created a session and a service, you can list them
 using the CLI:
 
+```shell
+raxsr sessions list --user='username' --api-key='api key'
+```
 
+### Service Registry CLI Sessions List
+```shell
++------------+-------------------+-----------+
+| Session ID | Heartbeat Timeout | Last Seen |
++------------+-------------------+-----------+
+| seDMRMcCQh |                30 | None      |
++------------+-------------------+-----------+
+
+```
+
+```shell
+raxsr services list --user='username' --api-key='api key'
+```
+
+### Service Registry CLI Services List
+```shell
++------------+------------+------+
+| Service ID | Session ID | Tags |
++------------+------------+------+
+| service id | seDMRMcCQh |      |
++------------+------------+------+
+
+```

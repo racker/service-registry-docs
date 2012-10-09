@@ -20,6 +20,54 @@ Your account number is returned as part of the authentication service
 response, after the final '/' in the X-Server-Management-Url header. See
 Authentication for more information.
 
+## Authentication
+
+### The Authentication Endpoint
+
+You'll send your authentication request to the Rackspace Cloud Authentication
+Service using the following URL if you have a US account:
+
+https://identity.api.rackspacecloud.com/v2.0/tokens
+
+or the following URL if you have a UK account:
+
+https://lon.identity.api.rackspacecloud.com/v2.0/tokens
+
+### The Authentication Process
+
+When sending an authentication request, you'll send your Rackspace account
+username and API access key to the Rackspace Cloud Authentication Service.
+After receiving your request, the Authentication Service validates your
+credentials and returns an authorization token and a list of the services
+you can access along with your account number. You'll need to include the
+authentication token and your account number with each request you make to
+the API. We'll show you how in the next section.
+
+### Example Authentication
+
+You'll need your username and API key in order to authenticate. You can find
+your API key like so:
+
+* Log into the Control Panel at https://mycloud.rackspacecloud.com.
+* When the site loads, click your username in the upper-right corner of the
+window. Your username appears as the menu title. Select API Keys from the
+drop-down menu. The API Access page appears.
+* From the API Access page you can generate a new key or Show/Hide an
+existing key.
+
+Once you have the API key, you can make a request to authenticate like so:
+
+### Using cURL to Authenticate
+```shell
+curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d
+'{ "auth":{ "RAX-KSKEY:apiKeyCredentials":{ "username":"theUserName", "apiKey":"00a00000a000a0000000a000a00aaa0a" } } }' -H "Content-type: application/json"
+
+```
+
+Successful authentication returns a token which you can use as evidence that
+your identity has already been authenticated. To use the token, pass it to
+Service Registry as an X-Auth-Token header.
+
 ## Request / Response Types
 
 The Rackspace Service Registry API supports JSON data serialization
