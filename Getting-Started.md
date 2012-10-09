@@ -15,6 +15,7 @@ raxsr sessions list --user='username' --api-key='api key'
 ```
 
 ### Service Registry CLI Sessions List
+
 ```shell
 +------------+-------------------+-----------+
 | Session ID | Heartbeat Timeout | Last Seen |
@@ -29,6 +30,7 @@ raxsr services list --user='username' --api-key='api key'
 ```
 
 ### Service Registry CLI Services List
+
 ```shell
 +------------+------------+------+
 | Service ID | Session ID | Tags |
@@ -46,6 +48,7 @@ raxsr events list --user='username' --api-key='api key'
 ```
 
 ### Service Registry CLI Events List
+
 ```shell
 +--------------------------------------+---------------------+------------------+------------------------+
 | Event ID                             | Timestamp           | Event Type       | Payload                |
