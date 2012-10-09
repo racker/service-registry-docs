@@ -37,3 +37,20 @@ raxsr services list --user='username' --api-key='api key'
 +------------+------------+------+
 
 ```
+
+You can also inspect the events feed and there should be a service.join
+event:
+
+### Service Registry CLI Events List
+```shell
++--------------------------------------+---------------------+------------------+------------------------+
+| Event ID                             | Timestamp           | Event Type       | Payload                |
++--------------------------------------+---------------------+------------------+------------------------+
+| fdf898e0-1244-11e2-8e15-0295b0845fc6 | 2012-10-09 12:12:30 | service.join     | metadata:              |
+|                                      |                     |                  | id: service id         |
+|                                      |                     |                  | session_id: seDMRMcCQh |
+|                                      |                     |                  | tags: []               |
+|                                      |                     |                  |                        |
++--------------------------------------+---------------------+------------------+------------------------+
+
+```
