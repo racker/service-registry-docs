@@ -477,7 +477,7 @@ running in order to maintain the session:
 
 ```javascript
 var async = require('async');
-var Client = require('farscape-client/lib/client').Client
+var Client = require('service-registry-client/lib/client').Client
 
 var username = ''; // your username here
 var key = ''; // your API key here
