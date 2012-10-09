@@ -58,3 +58,5 @@ raxsr events list --user='username' --api-key='api key'
 +--------------------------------------+---------------------+------------------+------------------------+
 
 ```
+
+For more in-depth examples, please see the Integration Guide.
