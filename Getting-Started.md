@@ -11,7 +11,7 @@ Now that you've created a session and a service, you can list them
 using the CLI:
 
 ```shell
-raxsr sessions list --user='username' --api-key='api key'
+raxsr sessions list --user=username --api-key=key
 ```
 
 ### Service Registry CLI Sessions List
@@ -26,7 +26,7 @@ raxsr sessions list --user='username' --api-key='api key'
 ```
 
 ```shell
-raxsr services list --user='username' --api-key='api key'
+raxsr services list --user=username --api-key=key
 ```
 
 ### Service Registry CLI Services List
@@ -44,7 +44,7 @@ You can also inspect the events feed and there should be a service.join
 event:
 
 ```shell
-raxsr events list --user='username' --api-key='api key'
+raxsr events list --user=username --api-key=key
 ```
 
 ### Service Registry CLI Events List
