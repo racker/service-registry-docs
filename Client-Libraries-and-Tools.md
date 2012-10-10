@@ -43,12 +43,12 @@ pip install service-registry-client
 The official Java library which allows you to interact with the API can be
 found at [https://github.com/racker/java-service-registry-client](https://github.com/racker/java-service-registry-client).
 
-## Best Practices For Writing Client Libraries
+## Best Practices for Writing Client Libraries
 
 This section describes best practices which you should follow if you are
 building a custom client library.
 
-### Use Persistent connections
+### Use Persistent Connections
 
 HTTP/1.1 defines persistent connections which you should use when talking with
 the API.
@@ -58,7 +58,7 @@ events feed. Instead of opening a new TCP connection when you are sending a
 heartbeat or polling the events feed, re-use the existing connection. This is
 more efficient for both the client and the server.
 
-### Make sure to re-authenticate with the Auth API
+### Make Sure to Re-authenticate with the Auth API
 
 When our API returns 401, you should try to re-authenticate with the Auth API
 and retrieve a new token. A 401 can either mean that you supplied an invalid
@@ -72,7 +72,7 @@ This is especially important because of the nature of this service. Code
 hitting our API won't be located in a run-once-script but rather inside
 long-running processes constantly hitting our API.
 
-### Cache a List of Available Services
+### Cache the List of Available Services
 
 To avoid interruptions in your service because of minor hiccups on your or our
 side you should cache the list services response in your client.
@@ -80,7 +80,7 @@ side you should cache the list services response in your client.
 This will allow you to retrieve a (potentially stale) list of services from the
 cache in case a minor service interruption occurs.
 
-### Retry heartbeating on non 404 errors
+### Retry Heartbeating on Non-404 errors
 
 If the API endpoint returns a non 404 error (e.g 500) when heartbeating a
 session, you should immediately try to re-send the heartbeat. The error could
