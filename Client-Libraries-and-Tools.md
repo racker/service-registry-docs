@@ -72,7 +72,7 @@ This is especially important because of the nature of this service. Code
 hitting our API won't be located in a run-once-script but rather inside
 long-running processes constantly hitting our API.
 
-### Cache a List of Available Services
+### Cache the List of Available Services
 
 To avoid interruptions in your service because of minor hiccups on your or our
 side you should cache the list services response in your client.
@@ -80,7 +80,7 @@ side you should cache the list services response in your client.
 This will allow you to retrieve a (potentially stale) list of services from the
 cache in case a minor service interruption occurs.
 
-### Retry heartbeating on non 404 errors
+### Retry Heartbeating on Non-404 errors
 
 If the API endpoint returns a non 404 error (e.g 500) when heartbeating a
 session, you should immediately try to re-send the heartbeat. The error could
