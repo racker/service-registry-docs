@@ -43,12 +43,12 @@ pip install service-registry-client
 The official Java library which allows you to interact with the API can be
 found at [https://github.com/racker/java-service-registry-client](https://github.com/racker/java-service-registry-client).
 
-## Best Practices for Writing Client Libraries
+## Best Practices For Writing Client Libraries
 
 This section describes best practices which you should follow if you are
 building a custom client library.
 
-### Use Persistent Connections
+### Use Persistent connections
 
 HTTP/1.1 defines persistent connections which you should use when talking with
 the API.
@@ -58,7 +58,7 @@ events feed. Instead of opening a new TCP connection when you are sending a
 heartbeat or polling the events feed, re-use the existing connection. This is
 more efficient for both the client and the server.
 
-### Make Sure to Re-authenticate with the Auth API
+### Make sure to re-authenticate with the Auth API
 
 When our API returns 401, you should try to re-authenticate with the Auth API
 and retrieve a new token. A 401 can either mean that you supplied an invalid
@@ -72,7 +72,7 @@ This is especially important because of the nature of this service. Code
 hitting our API won't be located in a run-once-script but rather inside
 long-running processes constantly hitting our API.
 
-### Cache the List of Available Services
+### Cache a List of Available Services
 
 To avoid interruptions in your service because of minor hiccups on your or our
 side you should cache the list services response in your client.
@@ -80,13 +80,46 @@ side you should cache the list services response in your client.
 This will allow you to retrieve a (potentially stale) list of services from the
 cache in case a minor service interruption occurs.
 
-### Retry Heartbeating on Non-404 errors
+### Retry heartbeating on non 404 errors
 
 If the API endpoint returns a non 404 error (e.g 500) when heartbeating a
 session, you should immediately try to re-send the heartbeat. The error could
 indicate an intermediate instead of an actual issue.
 
 ## Tools
+
+### Command Line Client
+
+Command Line Client allows you to perform different read and write operation on
+your accounts including listing of the events and updating configuration values.
+For a full list of functionality, please visit the project Github page at
+[https://github.com/racker/python-service-registry-cli](https://github.com/racker/python-service-registry-cli).
+
+#### Installation
+
+```shell
+pip install service-registry-cli
+```
+
+#### Usage
+
+For a list of the available commands, run the following command in your
+terminal:
+
+```shell
+raxsr --help
+```
+
+To view available options for a command, run the following command in your
+terminal:
+
+```shell
+raxsr help <resource> <action>
+```
+
+```shell
+raxsr help events list
+```
 
 ### Long Running Process Wrapper
 

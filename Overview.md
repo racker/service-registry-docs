@@ -34,7 +34,7 @@ in our system and get notified via the events feed when a value gets
 updated or deleted.
 
 For more information about the basic foundations of this API, refer to
-[Chapter 2, Concepts](Concepts).
+[Chapter 2, Concepts](concepts).
 
 ## How it Works
 

@@ -2,7 +2,8 @@
 
 The Rackspace Service Registry API provides a RESTful web service
 interface. All requests to authenticate and operate against the Rackspace
-Rackspace Service Registry API are performed using SSL over HTTPS on TCP port 443.
+Rackspace Service Registry API are performed using SSL over HTTPS on TCP
+port 443.
 
 ## Endpoint Access
 
@@ -10,15 +11,16 @@ Rackspace Service Registry runs as a separate instance in multiple
 regions. You are advised to pick the region which is closest to your
 servers.
 
-During preview, only a single instance in DFW is active. You can reach it at the
-address bellow:
+During preview, only a single instance in DFW is active. You can reach it at
+the address bellow:
 
 https://dfw.registry.api.rackspacecloud.com/v1.0/1234
 
 Replace the sample account ID number, 1234, with your actual account number.
 Your account number is returned as part of the authentication service
 response, after the final '/' in the X-Server-Management-Url header. See
-Authentication for more information.
+[Authentication](general-api-information-authentication) bellow for more 
+information.
 
 ## Authentication
 
@@ -88,8 +90,8 @@ URI scheme, the first element of the path contains the target version
 identifier (e.g. https://dfw.registry.api.rackspacecloud.com/v1.0/…).
 
 ```shell
-GET /sessions HTTP/1.1
-Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
+GET /v1.0/1234/sessions HTTP/1.1
+Host: dfw.registry.api.rackspacecloud.com
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
@@ -105,7 +107,7 @@ older versions will be marked as DEPRECATED.
 
 To reduce load on the service, list operations will return a maximum number
 of items at a time. To navigate the collection, the parameters "limit" and
-"marker" can be set in the URI (e.g. `?limit=200&marker=enCCCCCC`). The
+"marker" can be set in the URI (e.g. ?limit=200&marker=enCCCCCC). The
 marker parameter is the ID of the first item in the next page. This item
 can be found in the metadata object under the `next_key` tag. Items are
 sorted by the ID name in lexicographic order. The limit parameter sets the
@@ -117,11 +119,12 @@ For convenience, collections contain a link to the next page (the
 `next_href` attribute in the metadata object). If there are no more
 objects, the `next_key` and next_href attributes will be empty. The
 following examples illustrate two pages in a collection of services. The
-first page was retrieved via a GET to https://todo.api.rackspacecloud.com
-v1.0/services?limit=1. In these examples, the limit parameter sets the page
-size to a single item. The subsequent next_href link will honor the initial
-page size. Thus, a client may follow this link to traverse a paginated
-collection without having to input the limit parameter.
+first page was retrieved via a GET to
+`https://dfw.api.rackspacecloud.com/v1.0/1234/services?limit=1`. In these
+examples, the limit parameter sets the page size to a single item. The
+subsequent next_href link will honor the initial page size. Thus, a client
+may follow this link to traverse a paginated collection without having to
+input the limit parameter.
 
 ### List Services, First Page (?limit=1)
 
