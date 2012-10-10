@@ -17,7 +17,7 @@ Registry with a service attached to it, and you will be able to utilize
 features such as the Events feed, which contains events for when a service
 has joined, when a session has timed out, and more.
 
-### Create a session
+### Create a Session
 
 The first thing you will want to do when using the Rackspace Service Registry
 is create a session.
@@ -213,7 +213,7 @@ create a session, you get an object back that heartbeats for you
 automatically. We will see that in the Twisted Python client in the next
 section.
 
-## Using the Twisted Python client
+## Using the Twisted Python Client
 
 All of the Service Registry functionality has been abstracted away in various
 clients for popular programming languages such as Java, Node.js, and Python. In
@@ -221,7 +221,7 @@ this section, we'll see how to use the Twisted Python client to go through
 the same flow of creating a session, adding services to it, and
 heartbeating the session.
 
-### Installing the client
+### Installing the Client
 
 The client is available in the Python Package Index. To install, you can do:
 
@@ -229,7 +229,7 @@ The client is available in the Python Package Index. To install, you can do:
 pip install txServiceRegistry
 ```
 
-### Create a session (Python)
+### Create a Session (Python)
 
 In order to create a session using the Twisted Python client, we first have
 to instantiate a client to interact with the Rackspace Service Registry:
