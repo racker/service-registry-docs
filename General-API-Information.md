@@ -88,8 +88,8 @@ URI scheme, the first element of the path contains the target version
 identifier (e.g. https://dfw.registry.api.rackspacecloud.com/v1.0/…).
 
 ```shell
-GET /sessions HTTP/1.1
-Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
+GET /v1.0/1234/sessions HTTP/1.1
+Host: dfw.registry.api.rackspacecloud.com
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```

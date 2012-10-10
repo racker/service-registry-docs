@@ -33,8 +33,8 @@ body must contain `heartbeat_timeout` in the range of 3-30 seconds, and may
 contain optional metadata (key/value pairs).
 
 ```shell
-POST /sessions HTTP/1.1
-Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
+POST /v1.0/1234/sessions HTTP/1.1
+Host: dfw.registry.api.rackspacecloud.com
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
@@ -76,8 +76,8 @@ service name is 'dfw1-db1'. The way to create a service is to POST to
 service should belong to, optional metadata, and optional tags:
 
 ```shell
-POST /services HTTP/1.1
-Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
+POST /v1.0/1234/services HTTP/1.1
+Host: dfw.registry.api.rackspacecloud.com
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
@@ -142,8 +142,8 @@ or metadata. If you GET /services, you should see this:
 You can also GET services by tag:
 
 ```shell
-GET /services?tag=db HTTP/1.1
-Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
+GET /v1.0/1234/services?tag=db HTTP/1.1
+Host: dfw.registry.api.rackspacecloud.com
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
@@ -189,8 +189,8 @@ Heartbeating is as simple as POSTing to /sessions/[session ID]/heartbeat
 with the token as the body.
 
 ```shell
-POST /sessions/seMkzI0mxC/heartbeat HTTP/1.1
-Host: dfw.registry.api.rackspacecloud.com/v1.0/1234
+POST /v1.0/1234/sessions/seMkzI0mxC/heartbeat HTTP/1.1
+Host: dfw.registry.api.rackspacecloud.com
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```
