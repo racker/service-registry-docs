@@ -1,6 +1,6 @@
 # Release Notes
 
-## v1.0, October 18, 2012
+## v1.0, October 10, 2012
 
 These release notes correspond to the Preview for Rackspace Service
 Registry.

@@ -1,7 +1,5 @@
 # Getting Started
 
-## Getting Started with the Rackspace Service Registry
-
 The quickest way to try out the Service Registry is to use one of the
 client libraries to create a session and a service, and then use the
 command line client to list them and view the corresponding events.

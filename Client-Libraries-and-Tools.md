@@ -43,12 +43,12 @@ pip install service-registry-client
 The official Java library which allows you to interact with the API can be
 found at [https://github.com/racker/java-service-registry-client](https://github.com/racker/java-service-registry-client).
 
-## Best Practices For Writing Client Libraries
+## Best Practices for Writing Client Libraries
 
 This section describes best practices which you should follow if you are
 building a custom client library.
 
-### Use Persistent connections
+### Use Persistent Connections
 
 HTTP/1.1 defines persistent connections which you should use when talking with
 the API.
@@ -58,7 +58,7 @@ events feed. Instead of opening a new TCP connection when you are sending a
 heartbeat or polling the events feed, re-use the existing connection. This is
 more efficient for both the client and the server.
 
-### Make sure to re-authenticate with the Auth API
+### Make Sure to Re-authenticate with the Auth API
 
 When our API returns 401, you should try to re-authenticate with the Auth API
 and retrieve a new token. A 401 can either mean that you supplied an invalid
