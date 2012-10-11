@@ -19,7 +19,7 @@ https://dfw.registry.api.rackspacecloud.com/v1.0/1234
 Replace the sample account ID number, 1234, with your actual account number.
 Your account number is returned as part of the authentication service
 response, after the final '/' in the X-Server-Management-Url header. See
-[Authentication](general-api-information-authentication) bellow for more 
+[Authentication](general-api-information-authentication) bellow for more
 information.
 
 ## Authentication
@@ -61,7 +61,7 @@ Once you have the API key, you can make a request to authenticate like so:
 
 ### Using cURL to Authenticate
 
-```shell
+```bash
 curl -X POST https://identity.api.rackspacecloud.com/v2.0/tokens -d
 '{ "auth":{ "RAX-KSKEY:apiKeyCredentials":{ "username":"theUserName", "apiKey":"00a00000a000a0000000a000a00aaa0a" } } }' -H "Content-type: application/json"
 
