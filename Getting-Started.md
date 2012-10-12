@@ -1,6 +1,6 @@
 # Getting Started
 
-## Getting Started with the Rackspace Service Registry
+## Getting Started with Rackspace Service Registry
 
 The quickest way to try out the Service Registry is to use one of the
 client libraries to create a session and a service, and then use the
@@ -10,7 +10,7 @@ To see how to create sessions and services using the Twisted Python or
 Node.js libraries, take a look at the [Integration Guide](integration-guide).
 
 Now that you've created a session and a service, you can list them
-using the command line tool.
+using the command line tool:
 
 ```shell
 raxsr sessions list --user=username --api-key=key
