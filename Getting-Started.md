@@ -19,11 +19,11 @@ raxsr sessions list --user=username --api-key=key
 ### Service Registry CLI Sessions List
 
 ```
-+------------+-------------------+-----------+
-| Session ID | Heartbeat Timeout | Last Seen |
-+------------+-------------------+-----------+
-| seDMRMcCQh |                30 | None      |
-+------------+-------------------+-----------+
++------------+-------------------+-----------+-----------+
+| Session ID | Heartbeat Timeout | Last Seen | Metadata  |
++------------+-------------------+-----------+-----------+
+| seDMRMcCQh |                30 |           |           |
++------------+-------------------+-----------+-----------+
 
 ```
 
@@ -34,11 +34,11 @@ raxsr services list --user=username --api-key=key
 ### Service Registry CLI Services List
 
 ```
-+------------+------------+------+
-| Service ID | Session ID | Tags |
-+------------+------------+------+
-| service id | seDMRMcCQh |      |
-+------------+------------+------+
++------------+------------+------+-------------+
+| Service ID | Session ID | Tags | Metadata    |
++------------+------------+------+-------------+
+| service id | seDMRMcCQh | www  | region: dfw |
++------------+------------+------+-------------+
 
 ```
 
@@ -58,7 +58,7 @@ raxsr events list --user=username --api-key=key
 | fdf898e0-1244-11e2-8e15-0295b0845fc6 | 2012-10-09 12:12:30 | service.join     | metadata:              |
 |                                      |                     |                  | id: service id         |
 |                                      |                     |                  | session_id: seDMRMcCQh |
-|                                      |                     |                  | tags: []               |
+|                                      |                     |                  | tags: www              |
 |                                      |                     |                  |                        |
 +--------------------------------------+---------------------+------------------+------------------------+
 
