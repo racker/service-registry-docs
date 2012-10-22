@@ -12,7 +12,7 @@ The general flow when registering a service with Rackspace Service Registry is:
 * Add service(s) to the session.
 * Heartbeat the session to maintain it.
 
-Once you've done those things, you'll have a session in Cloud Service
+Once you've done those things, you'll have a session in Rackspace Service
 Registry with a service attached to it, and you will be able to utilize
 features such as the Events feed, which contains events for when a service
 has joined, when a session has timed out, and more.
@@ -22,10 +22,10 @@ has joined, when a session has timed out, and more.
 The first thing you will want to do when using the Rackspace Service Registry
 is create a session.
 
-As described in the Session section of the Concepts document,
-sessions enable clients to create persistent sessions on the server that
-are used as a context for other operations. Clients should first create a
-session and heartbeat it to maintain the session.
+As described in the Session section of the [Concepts](concepts) chapter,
+sessions give clients the ability to manage persistent context for one or more
+services. Clients should first create a session and heartbeat it to maintain
+it.
 
 To create a session, POST to /sessions, replacing "1234" with your account
 ID number, and using the auth token returned by the auth API. The request

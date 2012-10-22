@@ -2,9 +2,9 @@
 
 ## Session
 
-Sessions enable clients to create persistent sessions on the server that
-are used as a context for other operations. The client is responsible for
-sending heartbeats to maintain the session.
+Sessions give clients the ability to manage persistent context for one or more
+services. This context is then used for other operations. The client is 
+responsible for sending heartbeats to maintain the session.
 
 If a session is not heartbeated in the defined timeout interval, the
 session is considered dead. All of its child Service objects are deleted,
