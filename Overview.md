@@ -17,9 +17,9 @@ Service Registry exposes an events feed which includes all of the events
 that happened during the life-cycle of your account (e.g. service comes
 online, configuration value gets updated, etc.).
 
-Events feed is a great information source about your infrastucture and can
-be used to kick off a lot of different automation processes. Examples
-include, but are not limited to:
+Events feed is an information source about your infrastucture and can
+be used to kick off a lot of different automation processes. Here are some
+examples:
 
 - Add a web service to a load-balancer when it comes online
 - Open a ticket in the internal ticketing system when a service goes offline
@@ -33,8 +33,8 @@ Configuration storage allows users to store arbitrary configuration values
 in our system and get notified via the events feed when a value gets
 updated or deleted.
 
-For more information about the basic foundations of this API, refer to
-[Chapter 2, Concepts](concepts).
+For more information about the basics of this API, refer to
+[Concepts](concepts) chapter.
 
 ## How it Works
 
@@ -56,7 +56,7 @@ to an active Rackspace account. You should also be familiar with:
 ## Additional Resources
 
 You can download the most current version of this document from the
-Rackspace Cloud website at (http://docs.rackspace.com/api/)[http://docs.rackspace.com/api/].
+Rackspace Cloud website at [http://docs.rackspace.com/api/](http://docs.rackspace.com/api/).
 
 For more information about Rackspace Cloud products, please refer to
 [http://www.rackspace.com/cloud](http://www.rackspace.com/cloud). This site

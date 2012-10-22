@@ -42,7 +42,7 @@ raxsr services list --user=username --api-key=key
 
 ```
 
-You can also inspect the events feed and there should be a `service.join`
+You can also inspect the events feed which should include a `service.join`
 event:
 
 ```shell
@@ -64,5 +64,5 @@ raxsr events list --user=username --api-key=key
 
 ```
 
-For more in-depth examples, please see the
-[Integration Guide](integration-guide).
+You can find more in-depth examples in the
+[Integration Guide](integration-guide) section.

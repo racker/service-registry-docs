@@ -48,8 +48,13 @@ system.
 ## Events Feed
 
 The events feed contains a list of events which occurred during the life-
-time of your account. Every time a service joins a session, a configuration
-value is updated or removed, or a session times out, an event is inserted.
+time of your account. An event is inserted each time one of the following
+incidents occur:
+
+* A service joins a session
+* A configuration value is updated
+* A configuration value is removed
+* A session times out
 
 A typical automation use case would be periodically polling the event feed
 and acting on the returned events.

@@ -2,7 +2,7 @@
 
 ## Account
 
-### Get limits
+### Get Limits
 
 This endpoint returns resource and rate limits that apply to your account.
 
@@ -33,9 +33,9 @@ Error Response Codes: 401, 403, 500, 503
 
 ## Sessions
 
-Sessions enable clients to create persistent sessions on the server that
-are used as a context for other operations. The client is responsible for
-sending heartbeats to maintain the session.
+Sessions give clients the ability to manage persistent context for one or more
+services. This context is then used for other operations. The client is
+responsible for sending heartbeats to maintain the session.
 
 ### Attributes
 
@@ -117,7 +117,7 @@ when initially heartbeating this session.
 
 Error Response Codes: 400, 401, 403, 500, 503
 
-#### Session Create Request
+#### Create Session Request
 
 ```javascript
 {
@@ -128,7 +128,7 @@ Error Response Codes: 400, 401, 403, 500, 503
 }
 ```
 
-#### Session Create Response
+#### Create Session Response
 
 ```javascript
 {
@@ -489,7 +489,7 @@ this is the first time the value has been set, the old value will be `null`.
 This event represents a configuration value being removed. The payload
 contains the configuration value id and the old value.
 
-### List events
+### List Events
 
 Verb | URI | Description
 ---- | --- | -----------

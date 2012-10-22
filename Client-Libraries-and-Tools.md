@@ -60,17 +60,17 @@ more efficient for both the client and the server.
 
 ### Make Sure to Re-authenticate with the Auth API
 
-When our API returns 401, you should try to re-authenticate with the Auth API
-and retrieve a new token. A 401 can either mean that you supplied an invalid
-token or that the token has expired.
+When the Service Registry API returns 401, you should try to re-authenticate
+with the Auth API and retrieve a new token. A 401 can either mean that you
+supplied an invalid token or that the token has expired.
 
 The Auth API returns a token expiration time with the "obtain token" response,
 but some times, for various reasons, tokens are purged before the actual
 expiration time.
 
 This is especially important because of the nature of this service. Code
-hitting our API won't be located in a run-once-script but rather inside
-long-running processes constantly hitting our API.
+hitting the Service Registry API won't be located in a run-once-script but
+rather inside long-running processes constantly hitting the API.
 
 ### Cache the List of Available Services
 
@@ -80,7 +80,7 @@ side you should cache the list services response in your client.
 This will allow you to retrieve a (potentially stale) list of services from the
 cache in case a minor service interruption occurs.
 
-### Retry Heartbeating on Non-404 errors
+### Retry Heartbeating on Non-404 Errors
 
 If the API endpoint returns a non 404 error (e.g 500) when heartbeating a
 session, you should immediately try to re-send the heartbeat. The error could
@@ -96,6 +96,8 @@ For a full list of functionality, please visit the project Github page at
 [https://github.com/racker/python-service-registry-cli](https://github.com/racker/python-service-registry-cli).
 
 #### Installation
+
+Client library is installed using `pip` Python package manager.
 
 ```shell
 pip install service-registry-cli
@@ -124,7 +126,7 @@ raxsr help events list
 ### Long Running Process Wrapper
 
 This tool written in Node.js allows you to wrap and register arbitrary
-long-running process inside the service registry. It works by execing a new
+long-running process inside the service registry. It works by executing a new
 process for the long-running process you want to wrap and regsitering it in the
 service registry.
 

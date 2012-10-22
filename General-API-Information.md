@@ -77,7 +77,7 @@ The Rackspace Service Registry API supports JSON data serialization
 format. The request format is specified using the Content-Type header and is
 required for operations that have a request body.
 
-### Supported response types
+### Supported Response Types
 
 Format | Accept
 ------ | ------
@@ -107,7 +107,7 @@ older versions will be marked as DEPRECATED.
 
 To reduce load on the service, list operations will return a maximum number
 of items at a time. To navigate the collection, the parameters "limit" and
-"marker" can be set in the URI (e.g. ?limit=200&marker=enCCCCCC). The
+"marker" can be set in the URI (for example, ?limit=200&marker=enCCCCCC). The
 marker parameter is the ID of the first item in the next page. This item
 can be found in the metadata object under the `next_key` tag. Items are
 sorted by the ID name in lexicographic order. The limit parameter sets the
