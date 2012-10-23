@@ -7,7 +7,7 @@ client libraries to create a session and a service, and then use the
 command line client to list them and view the corresponding events.
 
 To see how to create sessions and services using the Twisted Python or
-Node.js libraries, take a look at the [Integration Guide](integration-guide).
+Node.js libraries, take a look at the [Integration Instructions](integration-instructions).
 
 Now that you've created a session and a service, you can list them
 using the command line tool:
@@ -65,4 +65,4 @@ raxsr events list --user=username --api-key=key
 ```
 
 You can find more in-depth examples in the
-[Integration Guide](integration-guide) section.
+[Integration Instructions](integration-instructions) chapter.
