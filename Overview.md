@@ -36,8 +36,6 @@ updated or deleted.
 For more information about the basics of this API, refer to
 [Concepts](concepts) chapter.
 
-## How it Works
-
 ## Intended Audience
 
 This document is intended for software developers interested in developing
