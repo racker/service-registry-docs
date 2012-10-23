@@ -299,6 +299,8 @@ the session), the session ID, and a HeartBeater object. The HeartBeater
 object allows us to automatically heartbeat the session by calling the
 start() method:
 
+#### Heartbeat Session Using Heartbeater (Python)
+
 ```python
 heartbeater.start()
 ```
@@ -375,6 +377,8 @@ First, the server creates a session with a heartbeat interval of 30. Since
 client.sessions.create() returns a Twisted Deferred, a callback must be
 added to it in order to use the result. This is done here:
 
+#### Create a Session (Python)
+
 ```python
 d = client.sessions.create(30)
 d.addCallback(cbSession)
@@ -448,6 +452,8 @@ session ID, response body (which contains the initial token required for
 heartbeating the session), and a HeartBeater object. The HeartBeater
 object allows us to automatically heartbeat the session by calling the
 start() method:
+
+#### Heartbeat Session Using Heartbeater (Javascript)
 
 ```Javascript
 heartbeater.start();
