@@ -211,6 +211,7 @@ Fault Element | Associated Error Codes | Description
 badRequest | 400 | The system received an invalid value in a request
 serviceWithThisIdExists | 400 | Service with the specified if already exists
 invalidLimit | 400 | Invalid limit has been specified.
+badRequestHttpsOnly | 400 | API endpoint is only accessible over a secure (https) connection
 limitReached | 400 | Limit has been reached. Please contact sr@rackspace.com to increase your limit.
 rateLimitReached | 400 | Rate limit has been reached. Please wait before trying again.
 unauthorizedError | 401 | The system received a request from a user that is not authenticated.
