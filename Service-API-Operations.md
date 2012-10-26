@@ -197,8 +197,8 @@ heartbeated to indicate that the session and its services are still alive.
 
 Name | Description | Validation
 ---- | --- | -----------
-session_id | Session id. | Immutable, String between 1 and 255 characters long
 id | Service id | Immutable, String between 3 and 55 characters long, String matching the regex /[a-z0-9_-]{3,55}/i
+session_id | Session id. | Immutable, String between 1 and 255 characters long
 metadata | Arbitrary key/value pairs. | Optional, Hash [String,String between 1 and 255 characters long:String,String between 1 and 255 characters long], Array or object with number of items between 0 and 20
 tags | Service tags. | Optional, Array [String,String between 1 and 55 characters long], Array or object with number of items between 0 and 10
 
@@ -459,9 +459,9 @@ value is updated or removed, or a session times out, an event is inserted.
 
 Name | Description | Validation
 ---- | --- | -----------
+id | Event id | Immutable, String between 3 and 255 characters long
 timestamp | Event timestamp | Integer
 type | Event type | String
-id | Event id | Immutable, String between 3 and 255 characters long
 payload | Event payload. | Optional, Optional, Hash [String,String between 1 and 255 characters long:String,String between 1 and 255 characters long]
 
 
