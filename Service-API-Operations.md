@@ -20,7 +20,11 @@ Error Response Codes: 401, 403, 500, 503
 
 ```javascript
 {
-    "resource": {},
+    "resource": {
+        "session": 300,
+        "service": 5000,
+        "configuration_value": 500
+    },
     "rate": {
         "/.*": {
             "limit": 500000,
