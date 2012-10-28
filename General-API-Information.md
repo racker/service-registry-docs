@@ -183,7 +183,31 @@ page is located in the metadata object (`metadata.next_href` attribute).
 Clients must follow the next_href link to continue to retrieve additional
 entities belonging to an account.
 
+## Resource Limits
+
+The table below contains default limits for different resources. If you want to
+create a new resource and your account limit for this resource has been reached
+the API server will return 400 "Limit has been reached".
+
+Resource | Limit
+-------- | -----
+Session | 300
+Service | 5000
+Configuration Value | 500
+
+To view the limits that apply to your account, use the
+[Get Limits endpoint](account-get-limits).
+
 ## Rate Limits
+
+The following table specifies the default rate limits for different URLs.
+
+Path regex | Limit
+--------- | -----
+/.*       | 50000
+
+To view the limits that apply to your account, use the
+[Get Limits endpoint](account-get-limits).
 
 ## Faults
 
