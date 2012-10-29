@@ -157,7 +157,7 @@ input the limit parameter.
             "id": "dfw1-db1",
             "session_id": "seOne",
             "tags": [
-                "db",
+                "database",
                 "mysql"
             ],
             "metadata": {

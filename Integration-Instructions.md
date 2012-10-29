@@ -87,7 +87,7 @@ X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
 ```javascript
 {
     "tags": [
-        "db",
+        "database",
         "mysql"
     ],
     "metadata": {
@@ -119,7 +119,7 @@ or metadata. If you GET /services, you should see this:
             "id": "dfw1-db1",
             "session_id": "sessionId",
             "tags": [
-                "db",
+                "database",
                 "mysql"
             ],
             "metadata": {
@@ -142,7 +142,7 @@ or metadata. If you GET /services, you should see this:
 You can also GET services by tag:
 
 ```shell
-GET /v1.0/1234/services?tag=db HTTP/1.1
+GET /v1.0/1234/services?tag=database HTTP/1.1
 Host: dfw.registry.api.rackspacecloud.com
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
@@ -159,7 +159,7 @@ and the response would look like this:
             "id": "dfw1-db1",
             "session_id": "sessionId",
             "tags": [
-                "db",
+                "database",
                 "mysql"
             ],
             "metadata": {

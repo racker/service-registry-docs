@@ -250,7 +250,7 @@ Error Response Codes: 401, 403, 500, 503
             "id": "dfw1-db1",
             "session_id": "sessionId",
             "tags": [
-                "db",
+                "database",
                 "mysql"
             ],
             "metadata": {
@@ -270,7 +270,7 @@ Error Response Codes: 401, 403, 500, 503
 }
 ```
 
-#### List Services Response (filtering on a tag - /services?tag=db)
+#### List Services Response (filtering on a tag - /services?tag=database)
 
 ```javascript
 {
@@ -279,7 +279,7 @@ Error Response Codes: 401, 403, 500, 503
             "id": "dfw1-db1",
             "session_id": "sessionId",
             "tags": [
-                "db",
+                "database",
                 "mysql"
             ],
             "metadata": {
@@ -318,7 +318,7 @@ Error Response Codes: 401, 403, 500, 503
     "id": "dfw1-db1",
     "session_id": "sessionId",
     "tags": [
-        "db",
+        "database",
         "mysql"
     ],
     "metadata": {
@@ -346,7 +346,7 @@ Error Response Codes: 400, 401, 403, 500, 503
 ```javascript
 {
     "tags": [
-        "db",
+        "database",
         "mysql"
     ],
     "metadata": {
@@ -532,7 +532,7 @@ returned.
                 "id": "dfw1-db1",
                 "session_id": "sessionId",
                 "tags": [
-                    "db",
+                    "database",
                     "mysql"
                 ],
                 "metadata": {
@@ -609,7 +609,7 @@ child service objects.
                     "id": "dfw1-db1",
                     "session_id": "seId0",
                     "tags": [
-                        "db",
+                        "database",
                         "mysql"
                     ],
                     "metadata": {
