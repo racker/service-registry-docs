@@ -201,7 +201,7 @@ heartbeated to indicate that the session and its services are still alive.
 
 Name | Description | Validation
 ---- | --- | -----------
-id | Service id | Immutable, String between 3 and 55 characters long, String matching the regex /[a-z0-9_-]{3,55}/i
+id | Service id | Immutable, String between 3 and 55 characters long, String matching the regex /^[a-z0-9_-]{3,55}$/i
 session_id | Session id. | Immutable, String between 1 and 255 characters long
 metadata | Arbitrary key/value pairs. | Optional, Hash [String,String between 1 and 255 characters long:String,String between 1 and 255 characters long], Array or object with number of items between 0 and 20
 tags | Service tags. | Optional, Array [String,String between 1 and 55 characters long], Array or object with number of items between 0 and 10
@@ -396,7 +396,7 @@ system.
 Name | Description | Validation
 ---- | --- | -----------
 value | Configuration value | String between 1 and 1024 characters long
-id | Configuration value id | Immutable, String between 3 and 32 characters long, String matching the regex /[a-z0-9_-]{3,32}/i
+id | Configuration value id | Immutable, String between 3 and 32 characters long, String matching the regex /^[a-z0-9_-]{3,32}$/i
 
 
 ### List Configuration Values
