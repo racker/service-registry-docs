@@ -172,6 +172,7 @@ input the limit parameter.
         "count": 1,
         "limit": 100,
         "marker": "dfw1-db1",
+        "next_marker": null,
         "next_href": null
     }
 }

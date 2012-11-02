@@ -134,6 +134,7 @@ or metadata. If you GET /services, you should see this:
         "count": 2,
         "limit": 100,
         "marker": null,
+        "next_marker": null,
         "next_href": null
     }
 }
@@ -174,6 +175,7 @@ and the response would look like this:
         "count": 1,
         "limit": 100,
         "marker": null,
+        "next_marker": null,
         "next_href": null
     }
 }

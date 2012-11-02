@@ -79,6 +79,7 @@ Error Response Codes: 401, 403, 500, 503
         "count": 1,
         "limit": 100,
         "marker": null,
+        "next_marker": null,
         "next_href": null
     }
 }
@@ -265,6 +266,7 @@ Error Response Codes: 401, 403, 500, 503
         "count": 2,
         "limit": 100,
         "marker": null,
+        "next_marker": null,
         "next_href": null
     }
 }
@@ -294,6 +296,7 @@ Error Response Codes: 401, 403, 500, 503
         "count": 1,
         "limit": 100,
         "marker": null,
+        "next_marker": null,
         "next_href": null
     }
 }
@@ -556,6 +559,7 @@ returned.
         "count": 3,
         "limit": 100,
         "marker": null,
+        "next_marker": null,
         "next_href": null
     }
 }
@@ -626,6 +630,7 @@ child service objects.
         "count": 1,
         "limit": 100,
         "marker": null,
+        "next_marker": null,
         "next_href": null
     }
 }
