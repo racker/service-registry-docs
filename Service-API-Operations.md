@@ -21,8 +21,8 @@ Error Response Codes: 401, 403, 500, 503
 ```javascript
 {
     "resource": {
-        "session": 300,
-        "service": 5000,
+        "session": 150,
+        "service": 300,
         "configuration_value": 500
     },
     "rate": {

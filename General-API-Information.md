@@ -192,8 +192,8 @@ the API server will return 400 "Limit has been reached".
 
 Resource | Limit
 -------- | -----
-Session | 300
-Service | 5000
+Session | 150
+Service | 300
 Configuration Value | 500
 
 
