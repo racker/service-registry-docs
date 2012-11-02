@@ -192,9 +192,9 @@ the API server will return 400 "Limit has been reached".
 
 Resource | Limit
 -------- | -----
-Session | 150
-Service | 300
-Configuration Value | 500
+Session | 100
+Service | 200
+Configuration Value | 1000
 
 
 To view the limits that apply to your account, use the
