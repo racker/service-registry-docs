@@ -36,6 +36,11 @@ updated or deleted.
 For more information about the basics of this API, refer to
 [Concepts](concepts) chapter.
 
+__Rackspace Service Registry is currently in a preview phase. If you want
+to test it out, please fill out [this survey](https://surveys.rackspace.com/Survey.aspx?s=f3d6e51580ab4510a564487fafdafdfd)
+and if you are qualified we will get back to you with the details on how to
+start using the product.__
+
 ## Intended Audience
 
 This document is intended for software developers interested in developing

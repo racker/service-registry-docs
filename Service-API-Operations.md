@@ -172,8 +172,8 @@ All of the official client libraries listed on the
 [Client Libraries and Tools](client-libraries-and-tools-client-libraries) page
 re-use the same HTTP connection when heartbeating a session.
 
-Note: Heartbeating a session multiple times using the same token has an
-undefined behavior.
+__Heartbeating a session multiple times using the same token has an
+undefined behavior.__
 
 Verb | URI | Description
 ---- | --- | -----------
