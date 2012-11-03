@@ -127,7 +127,7 @@ raxsr help events list
 
 This tool written in Node.js allows you to wrap and register arbitrary
 long-running process inside the service registry. It works by executing a new
-process for the long-running process you want to wrap and regsitering it in the
+process for the long-running process you want to wrap and registering it in the
 service registry.
 
 If the wrapped process dies, the wrapper itself also exits which will cause
@@ -157,3 +157,12 @@ service-registry-wrapper --id=my-host1-api0 --tags=api,www
           --interval=20  \
           /opt/my-app/bin/api --port=8000 --host=localhost
 ```
+
+__Process Wrapper is a good way to register services written in programming
+languages for which the client library is not available or for the services you
+don't have the access to the source code or it would be to impractical to modify
+it (for example Apache, MySQL, etc.). If you have access to the source code and
+the client library is available you are advised to use the client library to
+integrate with the Service Registry. This approach offers the most fine
+grained control over when to register a service and when to stop sending
+heartbeats.__
