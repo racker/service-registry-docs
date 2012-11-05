@@ -13,7 +13,7 @@ Now that you've created a session and a service, you can list them
 using the command line tool:
 
 ```shell
-raxsr sessions list --user=username --api-key=key
+raxsr sessions list --username=username --api-key=key
 ```
 
 All the commands in the client follow the format described bellow:
@@ -54,7 +54,7 @@ Limit: 100
 ```
 
 ```shell
-raxsr services list --user=username --api-key=key
+raxsr services list --username=username --api-key=key
 ```
 
 ### Service Registry CLI Services List
@@ -74,7 +74,7 @@ You can also inspect the events feed which should include a `service.join`
 event:
 
 ```shell
-raxsr events list --user=username --api-key=key
+raxsr events list --username=username --api-key=key
 ```
 
 ### Service Registry CLI Events List
