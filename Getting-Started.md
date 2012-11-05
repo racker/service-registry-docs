@@ -49,6 +49,8 @@ raxsr help <resource> <action>
 | seDMRMcCQh |                30 |           |           |
 +------------+-------------------+-----------+-----------+
 
+Limit: 100
+
 ```
 
 ```shell
@@ -63,6 +65,8 @@ raxsr services list --user=username --api-key=key
 +------------+------------+------+-------------+
 | service id | seDMRMcCQh | www  | region: dfw |
 +------------+------------+------+-------------+
+
+Limit: 100
 
 ```
 
@@ -85,6 +89,8 @@ raxsr events list --user=username --api-key=key
 |                                      |                     |                  | tags: www              |
 |                                      |                     |                  |                        |
 +--------------------------------------+---------------------+------------------+------------------------+
+
+Limit: 100
 
 ```
 
