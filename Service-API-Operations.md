@@ -399,7 +399,7 @@ system.
 Name | Description | Validation
 ---- | --- | -----------
 value | Configuration value | String between 1 and 1024 characters long
-id | Configuration value id | Immutable, String between 3 and 32 characters long, String matching the regex /^[a-z0-9_\-\.]{3,32}$/i
+id | Configuration value id | Immutable, String between 3 and 170 characters long, String matching the regex /^[a-z0-9_\-\.]{3,170}$/i
 
 
 ### List Configuration Values
