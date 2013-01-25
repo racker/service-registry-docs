@@ -509,7 +509,7 @@ Normal Response Code: 200
 Error Response Codes: 401, 403, 500, 503
 
 A client can specify the optional `marker` query parameter. If the marker is
-provided, only the events with ids that are newer than the  marker are
+provided, only the events with ids that are newer or equal to the  marker are
 returned. If no marker is provided, events from the last 24 hours are
 returned.
 
