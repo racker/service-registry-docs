@@ -399,7 +399,7 @@ system.
 Name | Description | Validation
 ---- | --- | -----------
 value | Configuration value | String between 1 and 1024 characters long
-id | Configuration value id | Immutable, String between 3 and 170 characters long, String matching the regex /^[a-z0-9_\-\.]{3,170}$/i
+id | Configuration value id | Immutable, String between 3 and 500 characters long, String matching the regex /^(\/[a-z0-9_\-]{3,50}\/?){0,10}([a-z0-9_\-\.]{3,170})?$/i
 
 
 ### List Configuration Values
@@ -414,6 +414,106 @@ Normal Response Code: 200
 
 Error Response Codes: 401, 403, 500, 503
 
+#### List Configuration Values
+
+```javascript
+{
+    "values": [
+        {
+            "id": "/production/cassandra/listen_ip",
+            "value": "value for /production/cassandra/listen_ip"
+        },
+        {
+            "id": "/production/cassandra/listen_port",
+            "value": "value for /production/cassandra/listen_port"
+        },
+        {
+            "id": "/production/cassandra/rpc_server/timeout",
+            "value": "value for /production/cassandra/rpc_server/timeout"
+        },
+        {
+            "id": "/production/cassandra/rpc_server/type",
+            "value": "value for /production/cassandra/rpc_server/type"
+        },
+        {
+            "id": "/production/zookeeper/listen_ip",
+            "value": "value for /production/zookeeper/listen_ip"
+        },
+        {
+            "id": "/production/zookeeper/listen_port",
+            "value": "value for /production/zookeeper/listen_port"
+        },
+        {
+            "id": "configId",
+            "value": "test value 123456"
+        },
+        {
+            "id": "configId1",
+            "value": "test value 123456"
+        },
+        {
+            "id": "configId2",
+            "value": "test value 123456"
+        }
+    ],
+    "metadata": {
+        "count": 9,
+        "limit": 100,
+        "marker": null,
+        "next_marker": null,
+        "next_href": null
+    }
+}
+```
+
+### List Configuration Values Under a Namespace
+
+Verb | URI | Description
+---- | --- | -----------
+GET | /configuration/<namespace 1>/<namespace n>/ | Returns configuration values for the provided namespace and all the sub namespaces.
+
+There are no parameters for this call.
+
+Normal Response Code: 200
+
+Error Response Codes: 401, 403, 500, 503
+
+__When retrieving all the configuration values under a namespace you need to
+include a trailing slash after the last namespace. If you don't do that it will
+be treated like you are retrieving a single configuration value.__
+
+#### List Configuration Values Under a Namespace Response (GET /configuration/production/cassandra/)
+
+```javascript
+{
+    "values": [
+        {
+            "id": "/production/cassandra/listen_ip",
+            "value": "value for /production/cassandra/listen_ip"
+        },
+        {
+            "id": "/production/cassandra/listen_port",
+            "value": "value for /production/cassandra/listen_port"
+        },
+        {
+            "id": "/production/cassandra/rpc_server/timeout",
+            "value": "value for /production/cassandra/rpc_server/timeout"
+        },
+        {
+            "id": "/production/cassandra/rpc_server/type",
+            "value": "value for /production/cassandra/rpc_server/type"
+        }
+    ],
+    "metadata": {
+        "count": 4,
+        "limit": 100,
+        "marker": null,
+        "next_marker": null,
+        "next_href": null
+    }
+}
+```
+
 ### Get Configuration Value
 
 Verb | URI | Description
@@ -425,6 +525,15 @@ There are no parameters for this call.
 Normal Response Code: 200
 
 Error Response Codes: 401, 403, 500, 503
+
+#### Get Configuration Value
+
+```javascript
+{
+    "id": "configId",
+    "value": "test value 123456"
+}
+```
 
 ### Set Configuration Value
 
@@ -551,12 +660,76 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
+                "configuration_value_id": "configId2"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "test value 123456",
+                "configuration_value_id": "configId1"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "test value 123456",
                 "configuration_value_id": "configId"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/rpc_server/type",
+                "configuration_value_id": "/production/cassandra/rpc_server/type"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/zookeeper/listen_ip",
+                "configuration_value_id": "/production/zookeeper/listen_ip"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/rpc_server/timeout",
+                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/listen_ip",
+                "configuration_value_id": "/production/cassandra/listen_ip"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/listen_port",
+                "configuration_value_id": "/production/cassandra/listen_port"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/zookeeper/listen_port",
+                "configuration_value_id": "/production/zookeeper/listen_port"
             }
         }
     ],
     "metadata": {
-        "count": 3,
+        "count": 11,
         "limit": 100,
         "marker": null,
         "next_marker": null,
