@@ -203,7 +203,7 @@ The request body would look like this:
 
 ```javascript
 {
-    "token": "6bc8d050-f86a-11e1-a89e-ca2ffe480b20"
+    "token": "36865510-f7da-11e1-b732-793f90dd0c35"
 }
 ```
 

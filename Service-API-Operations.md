@@ -184,13 +184,29 @@ used on the next heartbeat.
 
 Error Response Codes: 400, 401, 403, 404, 500, 503
 
-#### Session Heartbeat Response
+#### Session Heartbeat Request
 
 ```javascript
 {
     "token": "6bc8d050-f86a-11e1-a89e-ca2ffe480b20"
 }
 ```
+
+If this is a first heartbeat request for a session, body must include an
+initial heartbeat token which has been returned when you created a session.
+Otherwise you must include a token which was included in the previous
+heartbeat response body.
+
+#### Session Heartbeat Response
+
+```javascript
+{
+    "token": "36865510-f7da-11e1-b732-793f90dd0c35"
+}
+```
+
+Response body contains a token which you mean include next time you heartbeat
+this session.
 
 ## Services
 
@@ -660,14 +676,6 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId1"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "test value 123456",
                 "configuration_value_id": "configId2"
             }
         },
@@ -677,6 +685,14 @@ returned.
                 "old_value": null,
                 "new_value": "test value 123456",
                 "configuration_value_id": "configId"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "test value 123456",
+                "configuration_value_id": "configId1"
             }
         },
         {
@@ -699,6 +715,14 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
+                "new_value": "value for /production/cassandra/rpc_server/type",
+                "configuration_value_id": "/production/cassandra/rpc_server/type"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
                 "new_value": "value for /production/cassandra/listen_port",
                 "configuration_value_id": "/production/cassandra/listen_port"
             }
@@ -709,14 +733,6 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/cassandra/listen_ip",
                 "configuration_value_id": "/production/cassandra/listen_ip"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/type",
-                "configuration_value_id": "/production/cassandra/rpc_server/type"
             }
         },
         {
