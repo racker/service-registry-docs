@@ -59,7 +59,7 @@ Example of fully qualified configuration keys:
 * /production/cassandra/listen_ip (namespace is /production/cassandra)
 * /production/cassandra/listen_port (namespace is /production/cassandra)
 
-![Configuration Namespaces visualized using a tree](https://www.lucidchart.com/publicSegments/view/5112ccdb-ee10-4808-abe2-6fa50a00093e/image.png)
+![Configuration Namespaces visualized using a tree](/img/configuration_namespaces_tree_visualization.png)
 
 Namespaces are also ephemeral which means they only exist if at least one
 configuration value is stored under it.
@@ -89,6 +89,8 @@ incidents occur:
 * A configuration value is updated
 * A configuration value is removed
 * A session times out
+
+![Events feed visualized using a timeline](/img/events_feed_timeline_visualization.png)
 
 A typical automation use case would be periodically polling the event feed
 and acting on the returned events.
