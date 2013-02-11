@@ -45,7 +45,7 @@ responsible for sending heartbeats to maintain the session.
 
 Name | Description | Validation
 ---- | --- | -----------
-heartbeat_timeout | Maximum time between heartbeats | Integer, Value (3..30)
+heartbeat_timeout | Maximum time between heartbeats | Integer, Value (3..120)
 metadata | Arbitrary key/value pairs. | Optional, Hash [String,String between 1 and 255 characters long:String,String between 1 and 255 characters long], Array or object with number of items between 0 and 20
 
 
@@ -676,7 +676,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId"
+                "configuration_value_id": "configId2"
             }
         },
         {
@@ -692,7 +692,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId2"
+                "configuration_value_id": "configId"
             }
         },
         {
@@ -707,16 +707,8 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/timeout",
-                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "value for /production/cassandra/listen_ip",
-                "configuration_value_id": "/production/cassandra/listen_ip"
+                "new_value": "value for /production/cassandra/rpc_server/type",
+                "configuration_value_id": "/production/cassandra/rpc_server/type"
             }
         },
         {
@@ -731,8 +723,16 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/type",
-                "configuration_value_id": "/production/cassandra/rpc_server/type"
+                "new_value": "value for /production/cassandra/listen_ip",
+                "configuration_value_id": "/production/cassandra/listen_ip"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/rpc_server/timeout",
+                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
             }
         },
         {
