@@ -676,7 +676,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId2"
+                "configuration_value_id": "configId1"
             }
         },
         {
@@ -692,7 +692,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId1"
+                "configuration_value_id": "configId2"
             }
         },
         {
@@ -723,16 +723,16 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/listen_ip",
-                "configuration_value_id": "/production/cassandra/listen_ip"
+                "new_value": "value for /production/cassandra/listen_port",
+                "configuration_value_id": "/production/cassandra/listen_port"
             }
         },
         {
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/listen_port",
-                "configuration_value_id": "/production/cassandra/listen_port"
+                "new_value": "value for /production/cassandra/listen_ip",
+                "configuration_value_id": "/production/cassandra/listen_ip"
             }
         },
         {
