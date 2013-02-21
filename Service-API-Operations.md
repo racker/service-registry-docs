@@ -71,7 +71,7 @@ Error Response Codes: 401, 403, 500, 503
             "metadata": {
                 "region": "dfw"
             },
-            "heartbeat_timeout": 30,
+            "heartbeat_timeout": 3,
             "last_seen": null
         }
     ],
@@ -105,7 +105,7 @@ Error Response Codes: 401, 403, 500, 503
     "metadata": {
         "region": "dfw"
     },
-    "heartbeat_timeout": 30,
+    "heartbeat_timeout": 3,
     "last_seen": null
 }
 ```
@@ -129,7 +129,7 @@ Error Response Codes: 400, 401, 403, 500, 503
     "metadata": {
         "region": "dfw"
     },
-    "heartbeat_timeout": 30
+    "heartbeat_timeout": 3
 }
 ```
 
@@ -460,10 +460,6 @@ Error Response Codes: 401, 403, 500, 503
             "value": "value for /production/zookeeper/listen_port"
         },
         {
-            "id": "configId",
-            "value": "test value 123456"
-        },
-        {
             "id": "configId1",
             "value": "test value 123456"
         },
@@ -473,7 +469,7 @@ Error Response Codes: 401, 403, 500, 503
         }
     ],
     "metadata": {
-        "count": 9,
+        "count": 8,
         "limit": 100,
         "marker": null,
         "next_marker": null,
@@ -604,11 +600,57 @@ payload | Event payload. | Optional, Optional, Hash [String,String between 1 and
 This event represents a new service joining a session. The payload contains
 a service object.
 
+##### service.join Example Event Object
+
+```javascript
+{
+    "id": "6bc8d050-f86a-11e1-a89e-ca2ffe480b20",
+    "timestamp": 1346967146370,
+    "type": "service.join",
+    "payload": {
+        "id": "dfw1-api",
+        "session_id": "sessionId",
+        "tags": [],
+        "metadata": {}
+    }
+}
+```
+
 #### services.timeout
 
 This event represents a session timeout, which occurs when a client doesn't
 heartbeat a session within the defined timeout. The payload contains a list
-of services associated with the session.
+of service objects associated with the session.
+
+##### services.timeout Example Event Object
+
+```javascript
+{
+    "type": "services.timeout",
+    "payload": [
+        {
+            "id": "dfw1-api",
+            "session_id": "sem1hml6NZ",
+            "tags": [],
+            "metadata": {}
+        },
+        {
+            "id": "dfw1-db1",
+            "session_id": "sem1hml6NZ",
+            "tags": [
+                "database",
+                "mysql"
+            ],
+            "metadata": {
+                "region": "dfw",
+                "port": "3306",
+                "ip": "127.0.0.1",
+                "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
+            }
+        }
+    ]
+}
+```
 
 #### configuration_value.update
 
@@ -616,10 +658,35 @@ This event represents a configuration value being updated. The payload
 contains the configuration value id, the old value, and the new value. If
 this is the first time the value has been set, the old value will be `null`.
 
+##### configuration_value.update Example Event Object
+
+```javascript
+{
+    "type": "configuration_value.update",
+    "payload": {
+        "old_value": null,
+        "new_value": "test value 123456",
+        "configuration_value_id": "configId2"
+    }
+}
+```
+
 #### configuration_value.remove
 
 This event represents a configuration value being removed. The payload
 contains the configuration value id and the old value.
+
+##### configuration_value.remove Event Object
+
+```javascript
+{
+    "type": "configuration_value.remove",
+    "payload": {
+        "old_value": "test value 123456",
+        "configuration_value_id": "configId"
+    }
+}
+```
 
 ### List Events
 
@@ -676,14 +743,6 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "test value 123456",
                 "configuration_value_id": "configId2"
             }
         },
@@ -692,7 +751,22 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
+                "configuration_value_id": "configId"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "test value 123456",
                 "configuration_value_id": "configId1"
+            }
+        },
+        {
+            "type": "configuration_value.remove",
+            "payload": {
+                "old_value": "test value 123456",
+                "configuration_value_id": "configId"
             }
         },
         {
@@ -742,10 +816,35 @@ returned.
                 "new_value": "value for /production/zookeeper/listen_port",
                 "configuration_value_id": "/production/zookeeper/listen_port"
             }
+        },
+        {
+            "type": "services.timeout",
+            "payload": [
+                {
+                    "id": "dfw1-api",
+                    "session_id": "sem1hml6NZ",
+                    "tags": [],
+                    "metadata": {}
+                },
+                {
+                    "id": "dfw1-db1",
+                    "session_id": "sem1hml6NZ",
+                    "tags": [
+                        "database",
+                        "mysql"
+                    ],
+                    "metadata": {
+                        "region": "dfw",
+                        "port": "3306",
+                        "ip": "127.0.0.1",
+                        "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
+                    }
+                }
+            ]
         }
     ],
     "metadata": {
-        "count": 11,
+        "count": 13,
         "limit": 100,
         "marker": null,
         "next_marker": null,
@@ -788,7 +887,7 @@ child service objects.
                 "metadata": {
                     "region": "dfw"
                 },
-                "heartbeat_timeout": 30,
+                "heartbeat_timeout": 3,
                 "last_seen": null
             },
             "services": [

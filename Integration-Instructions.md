@@ -46,7 +46,7 @@ X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
     "metadata": {
         "region": "dfw"
     },
-    "heartbeat_timeout": 30
+    "heartbeat_timeout": 3
 }
 ```
 
