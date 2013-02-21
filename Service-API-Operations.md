@@ -630,13 +630,13 @@ of service objects associated with the session.
     "payload": [
         {
             "id": "dfw1-api",
-            "session_id": "seutNoO5FT",
+            "session_id": "sep8wqAXUg",
             "tags": [],
             "metadata": {}
         },
         {
             "id": "dfw1-db1",
-            "session_id": "seutNoO5FT",
+            "session_id": "sep8wqAXUg",
             "tags": [
                 "database",
                 "mysql"
@@ -666,7 +666,7 @@ this is the first time the value has been set, the old value will be `null`.
     "payload": {
         "old_value": null,
         "new_value": "test value 123456",
-        "configuration_value_id": "configId2"
+        "configuration_value_id": "configId"
     }
 }
 ```
@@ -702,7 +702,7 @@ Error Response Codes: 401, 403, 500, 503
 
 A client can specify the optional `marker` query parameter. If the marker is
 provided, only the events with ids that are newer or equal to the  marker are
-returned. If no marker is provided, events from the last 24 hours are
+returned. If no marker is provided, events from the last hour are
 returned.
 
 #### List Events Response
@@ -743,14 +743,6 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId2"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "test value 123456",
                 "configuration_value_id": "configId"
             }
         },
@@ -760,6 +752,14 @@ returned.
                 "old_value": null,
                 "new_value": "test value 123456",
                 "configuration_value_id": "configId1"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "test value 123456",
+                "configuration_value_id": "configId2"
             }
         },
         {
@@ -789,14 +789,6 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/listen_port",
-                "configuration_value_id": "/production/cassandra/listen_port"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
                 "new_value": "value for /production/cassandra/rpc_server/timeout",
                 "configuration_value_id": "/production/cassandra/rpc_server/timeout"
             }
@@ -813,6 +805,14 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
+                "new_value": "value for /production/cassandra/listen_port",
+                "configuration_value_id": "/production/cassandra/listen_port"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
                 "new_value": "value for /production/zookeeper/listen_port",
                 "configuration_value_id": "/production/zookeeper/listen_port"
             }
@@ -822,13 +822,13 @@ returned.
             "payload": [
                 {
                     "id": "dfw1-api",
-                    "session_id": "seutNoO5FT",
+                    "session_id": "sep8wqAXUg",
                     "tags": [],
                     "metadata": {}
                 },
                 {
                     "id": "dfw1-db1",
-                    "session_id": "seutNoO5FT",
+                    "session_id": "sep8wqAXUg",
                     "tags": [
                         "database",
                         "mysql"
