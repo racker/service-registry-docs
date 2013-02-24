@@ -630,13 +630,13 @@ of service objects associated with the session.
     "payload": [
         {
             "id": "dfw1-api",
-            "session_id": "sep8wqAXUg",
+            "session_id": "senVxl3KYt",
             "tags": [],
             "metadata": {}
         },
         {
             "id": "dfw1-db1",
-            "session_id": "sep8wqAXUg",
+            "session_id": "senVxl3KYt",
             "tags": [
                 "database",
                 "mysql"
@@ -773,8 +773,8 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/zookeeper/listen_ip",
-                "configuration_value_id": "/production/zookeeper/listen_ip"
+                "new_value": "value for /production/cassandra/listen_port",
+                "configuration_value_id": "/production/cassandra/listen_port"
             }
         },
         {
@@ -783,6 +783,14 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/cassandra/listen_ip",
                 "configuration_value_id": "/production/cassandra/listen_ip"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/zookeeper/listen_ip",
+                "configuration_value_id": "/production/zookeeper/listen_ip"
             }
         },
         {
@@ -805,14 +813,6 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/listen_port",
-                "configuration_value_id": "/production/cassandra/listen_port"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
                 "new_value": "value for /production/zookeeper/listen_port",
                 "configuration_value_id": "/production/zookeeper/listen_port"
             }
@@ -822,13 +822,13 @@ returned.
             "payload": [
                 {
                     "id": "dfw1-api",
-                    "session_id": "sep8wqAXUg",
+                    "session_id": "senVxl3KYt",
                     "tags": [],
                     "metadata": {}
                 },
                 {
                     "id": "dfw1-db1",
-                    "session_id": "sep8wqAXUg",
+                    "session_id": "senVxl3KYt",
                     "tags": [
                         "database",
                         "mysql"
