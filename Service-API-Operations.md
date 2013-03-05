@@ -630,13 +630,13 @@ of service objects associated with the session.
     "payload": [
         {
             "id": "dfw1-api",
-            "session_id": "senVxl3KYt",
+            "session_id": "seBlTTbxKK",
             "tags": [],
             "metadata": {}
         },
         {
             "id": "dfw1-db1",
-            "session_id": "senVxl3KYt",
+            "session_id": "seBlTTbxKK",
             "tags": [
                 "database",
                 "mysql"
@@ -666,7 +666,7 @@ this is the first time the value has been set, the old value will be `null`.
     "payload": {
         "old_value": null,
         "new_value": "test value 123456",
-        "configuration_value_id": "configId"
+        "configuration_value_id": "configId2"
     }
 }
 ```
@@ -743,6 +743,14 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
+                "configuration_value_id": "configId2"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "test value 123456",
                 "configuration_value_id": "configId"
             }
         },
@@ -755,34 +763,10 @@ returned.
             }
         },
         {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "test value 123456",
-                "configuration_value_id": "configId2"
-            }
-        },
-        {
             "type": "configuration_value.remove",
             "payload": {
                 "old_value": "test value 123456",
                 "configuration_value_id": "configId"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "value for /production/cassandra/listen_port",
-                "configuration_value_id": "/production/cassandra/listen_port"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "value for /production/cassandra/listen_ip",
-                "configuration_value_id": "/production/cassandra/listen_ip"
             }
         },
         {
@@ -799,6 +783,22 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/cassandra/rpc_server/timeout",
                 "configuration_value_id": "/production/cassandra/rpc_server/timeout"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/listen_ip",
+                "configuration_value_id": "/production/cassandra/listen_ip"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/listen_port",
+                "configuration_value_id": "/production/cassandra/listen_port"
             }
         },
         {
@@ -822,13 +822,13 @@ returned.
             "payload": [
                 {
                     "id": "dfw1-api",
-                    "session_id": "senVxl3KYt",
+                    "session_id": "seBlTTbxKK",
                     "tags": [],
                     "metadata": {}
                 },
                 {
                     "id": "dfw1-db1",
-                    "session_id": "senVxl3KYt",
+                    "session_id": "seBlTTbxKK",
                     "tags": [
                         "database",
                         "mysql"
