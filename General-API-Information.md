@@ -90,7 +90,7 @@ URI scheme, the first element of the path contains the target version
 identifier (e.g. https://dfw.registry.api.rackspacecloud.com/v1.0/…).
 
 ```shell
-GET /v1.0/1234/sessions HTTP/1.1
+GET /v1.0/1234/services HTTP/1.1
 Host: dfw.registry.api.rackspacecloud.com
 Accept: application/json
 X-Auth-Token: eaaafd18-0fed-4b3a-81b4-663c99ec1cbb
@@ -133,9 +133,10 @@ input the limit parameter.
     "values": [
         {
             "id": "dfw1-api",
-            "session_id": "seOne",
             "tags": [],
-            "metadata": {}
+            "metadata": {},
+            "heartbeat_timeout": 3,
+            "last_seen": null
         }
     ],
     "metadata": {
@@ -143,7 +144,7 @@ input the limit parameter.
         "limit": 1,
         "marker": null,
         "next_marker": "dfw1-db1",
-        "next_href": "https://todo.api.rackspacecloud.com/v1.0/7777/services?limit=1&marker=dfw1-db1"
+        "next_href": "https://dfw.registry.api.rackspacecloud.com/v1.0/7777/services?limit=1&marker=dfw1-db1"
     }
 }
 ```
@@ -155,7 +156,6 @@ input the limit parameter.
     "values": [
         {
             "id": "dfw1-db1",
-            "session_id": "seOne",
             "tags": [
                 "database",
                 "mysql"
@@ -165,7 +165,9 @@ input the limit parameter.
                 "port": "3306",
                 "ip": "127.0.0.1",
                 "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
-            }
+            },
+            "heartbeat_timeout": 3,
+            "last_seen": null
         }
     ],
     "metadata": {
@@ -192,7 +194,6 @@ the API server will return 400 "Limit has been reached".
 
 Resource | Limit
 -------- | -----
-Session | 100
 Service | 200
 Configuration Value | 1000
 
@@ -225,7 +226,7 @@ The following examples show a response body for a 404 notFoundError.
     "type": "notFoundError",
     "code": 404,
     "message": "object does not exist",
-    "details": "Object \"Session\" with key \"seNotFound\" does not exist",
+    "details": "Object \"Service\" with key \"srvNotFound\" does not exist",
     "txnId": ".rh-qyek.h-farscape.r-q3i5psGp.c-3.ts-1347320188220.v-0.1"
 }
 ```

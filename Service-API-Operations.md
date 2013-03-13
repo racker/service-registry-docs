@@ -35,191 +35,18 @@ Error Response Codes: 401, 403, 500, 503
 }
 ```
 
-## Sessions
+## Services
 
-Sessions give clients the ability to manage persistent context for one or more
-services. This context is then used for other operations. The client is
-responsible for sending heartbeats to maintain the session.
+A service represents an instance of a long running process on your server.
+The client is responsible for sending heartbeats to indicate that the service is
+still alive.
 
 ### Attributes
 
 Name | Description | Validation
 ---- | --- | -----------
 heartbeat_timeout | Maximum time between heartbeats | Integer, Value (3..120)
-metadata | Arbitrary key/value pairs. | Optional, Hash [String,String between 1 and 255 characters long:String,String between 1 and 255 characters long], Array or object with number of items between 0 and 20
-
-
-### List Sessions
-
-Verb | URI | Description
----- | --- | -----------
-GET | /sessions | Returns sessions for this account.
-
-There are no parameters for this call.
-
-Normal Response Code: 200
-
-Error Response Codes: 401, 403, 500, 503
-
-#### List Sessions Response
-
-```javascript
-{
-    "values": [
-        {
-            "id": "sessionId",
-            "metadata": {
-                "region": "dfw"
-            },
-            "heartbeat_timeout": 3,
-            "last_seen": null
-        }
-    ],
-    "metadata": {
-        "count": 1,
-        "limit": 100,
-        "marker": null,
-        "next_marker": null,
-        "next_href": null
-    }
-}
-```
-
-### Get Session
-
-Verb | URI | Description
----- | --- | -----------
-GET | /sessions/sessionId | Retrieves a single session.
-
-There are no parameters for this call.
-
-Normal Response Code: 200
-
-Error Response Codes: 401, 403, 500, 503
-
-#### Get Session Response
-
-```javascript
-{
-    "id": "sessionId",
-    "metadata": {
-        "region": "dfw"
-    },
-    "heartbeat_timeout": 3,
-    "last_seen": null
-}
-```
-
-### Create Session
-
-Verb | URI | Description
----- | --- | -----------
-POST | /sessions | Creates a new session.
-
-Normal Response Code: (201) 'Location' header contains a link to the newly
-created session and the body contains the token which should be used
-when initially heartbeating this session.
-
-Error Response Codes: 400, 401, 403, 500, 503
-
-#### Create Session Request
-
-```javascript
-{
-    "metadata": {
-        "region": "dfw"
-    },
-    "heartbeat_timeout": 3
-}
-```
-
-#### Create Session Response
-
-```javascript
-{
-    "token": "6bc8d050-f86a-11e1-a89e-ca2ffe480b20"
-}
-```
-
-### Update Session
-
-Verb | URI | Description
----- | --- | -----------
-PUT | /sessions/sessionId | Updates an existing session.
-
-Normal Response Code: (204) This code contains no content with an empty
-response body.
-
-Error Response Codes: 400, 401, 403, 404, 500, 503
-
-### Heartbeat a Session
-
-Heartbeating is used for telling our service that the session is still
-alive. The interval in which you need to hearbeat the session is dictated
-by the `heartbeat_timeout` attribute on the session object.
-
-For example, if you use a `heartbeat_timeout` of `30` seconds, this means
-that you need to heartbeat the session every 30 seconds or more often.
-Because of possible network delay and other factors, you are advised to
-heartbeat your session at least 3 seconds sooner than the
-`heartbeat_timeout`. In this example it would be every `27` seconds.
-
-When you heartbeat a session, you are advised to use an
-[HTTP/1.1 persistent connection](http://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html)
-instead of opening a new connection for every heartbeat request.
-
-All of the official client libraries listed on the
-[Client Libraries and Tools](client-libraries-and-tools-client-libraries) page
-re-use the same HTTP connection when heartbeating a session.
-
-__Heartbeating a session multiple times using the same token has an
-undefined behavior.__
-
-Verb | URI | Description
----- | --- | -----------
-POST | /sessions/sessionId/heartbeat | Heartbeat a session.
-
-Normal Response Code: (200), Response body contains a token which must be
-used on the next heartbeat.
-
-Error Response Codes: 400, 401, 403, 404, 500, 503
-
-#### Session Heartbeat Request
-
-```javascript
-{
-    "token": "6bc8d050-f86a-11e1-a89e-ca2ffe480b20"
-}
-```
-
-If this is a first heartbeat request for a session, body must include an
-initial heartbeat token which has been returned when you created a session.
-Otherwise you must include a token which was included in the previous
-heartbeat response body.
-
-#### Session Heartbeat Response
-
-```javascript
-{
-    "token": "36865510-f7da-11e1-b732-793f90dd0c35"
-}
-```
-
-Response body contains a token which you mean include next time you heartbeat
-this session.
-
-## Services
-
-A service represents an instance of a long running process on your server.
-Each service belongs to a single session which must be periodically
-heartbeated to indicate that the session and its services are still alive.
-
-### Attributes
-
-Name | Description | Validation
----- | --- | -----------
 id | Service id | Immutable, String between 3 and 65 characters long, String matching the regex /^[a-z0-9_\-\.]{3,65}$/i
-session_id | Session id. | Immutable, String between 1 and 15 characters long
 metadata | Arbitrary key/value pairs. | Optional, Hash [String,String between 1 and 255 characters long:String,String between 1 and 255 characters long], Array or object with number of items between 0 and 20
 tags | Service tags. | Optional, Array [String,String between 1 and 55 characters long], Array or object with number of items between 0 and 10
 
@@ -259,13 +86,13 @@ Error Response Codes: 401, 403, 500, 503
     "values": [
         {
             "id": "dfw1-api",
-            "session_id": "sessionId",
             "tags": [],
-            "metadata": {}
+            "metadata": {},
+            "heartbeat_timeout": 3,
+            "last_seen": null
         },
         {
             "id": "dfw1-db1",
-            "session_id": "sessionId",
             "tags": [
                 "database",
                 "mysql"
@@ -275,7 +102,9 @@ Error Response Codes: 401, 403, 500, 503
                 "port": "3306",
                 "ip": "127.0.0.1",
                 "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
-            }
+            },
+            "heartbeat_timeout": 3,
+            "last_seen": null
         }
     ],
     "metadata": {
@@ -295,7 +124,6 @@ Error Response Codes: 401, 403, 500, 503
     "values": [
         {
             "id": "dfw1-db1",
-            "session_id": "sessionId",
             "tags": [
                 "database",
                 "mysql"
@@ -305,7 +133,9 @@ Error Response Codes: 401, 403, 500, 503
                 "port": "3306",
                 "ip": "127.0.0.1",
                 "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
-            }
+            },
+            "heartbeat_timeout": 3,
+            "last_seen": null
         }
     ],
     "metadata": {
@@ -335,7 +165,6 @@ Error Response Codes: 401, 403, 500, 503
 ```javascript
 {
     "id": "dfw1-db1",
-    "session_id": "sessionId",
     "tags": [
         "database",
         "mysql"
@@ -345,7 +174,9 @@ Error Response Codes: 401, 403, 500, 503
         "port": "3306",
         "ip": "127.0.0.1",
         "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
-    }
+    },
+    "heartbeat_timeout": 3,
+    "last_seen": null
 }
 ```
 
@@ -375,7 +206,15 @@ Error Response Codes: 400, 401, 403, 500, 503
         "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
     },
     "id": "dfw1-db1",
-    "session_id": "sessionId"
+    "heartbeat_timeout": 3
+}
+```
+
+#### Service Create Response
+
+```javascript
+{
+    "token": "36865510-f7da-11e1-b732-793f90dd0c35"
 }
 ```
 
@@ -389,6 +228,62 @@ Normal Response Code: (204) This code contains no content with an empty
 response body.
 
 Error Response Codes: 400, 401, 403, 404, 500, 503
+
+### Heartbeat a Service
+
+Heartbeating is used for telling our service that the service is still
+alive. The interval in which you need to hearbeat the service is dictated
+by the `heartbeat_timeout` attribute on the service object.
+
+For example, if you use a `heartbeat_timeout` of `30` seconds, this means
+that you need to heartbeat the service every 30 seconds or more often.
+Because of possible network delay and other factors, you are advised to
+heartbeat your service at least 3 seconds sooner than the
+`heartbeat_timeout`. In this example it would be every `27` seconds.
+
+When you heartbeat a service, you are advised to use an
+[HTTP/1.1 persistent connection](http://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html)
+instead of opening a new connection for every heartbeat request.
+
+All of the official client libraries listed on the
+[Client Libraries and Tools](client-libraries-and-tools-client-libraries) page
+re-use the same HTTP connection when heartbeating a service.
+
+__Heartbeating a service multiple times using the same token has an
+undefined behavior.__
+
+Verb | URI | Description
+---- | --- | -----------
+POST | /services/serviceId/heartbeat | Heartbeat a service.
+
+Normal Response Code: (200), Response body contains a token which must be
+used on the next heartbeat.
+
+Error Response Codes: 400, 401, 403, 404, 500, 503
+
+#### Service Heartbeat Request
+
+```javascript
+{
+    "token": "1c640b20-8b71-11e2-9696-51b20b6220c3"
+}
+```
+
+If this is a first heartbeat request for a service , body must include an
+initial heartbeat token which has been returned when you created a service.
+Otherwise you must include a token which was included in the previous
+heartbeat response body.
+
+#### Service Heartbeat Response
+
+```javascript
+{
+    "token": "36865510-f7da-11e1-b732-793f90dd0c35"
+}
+```
+
+Response body contains a token which you mean include next time you heartbeat
+this service.
 
 ### Delete Service
 
@@ -580,8 +475,8 @@ Error Response Codes: 400, 401, 403, 404, 500, 503
 ## Events
 
 Events feed contains a list of events which occurred during the life-time
-of your account. Every time a service joins a session, a configuration
-value is updated or removed, or a session times out, an event is inserted.
+of your account. Every time a service is created, a configuration
+value is updated or removed, or a service times out, an event is inserted.
 
 ### Event Object Attributes
 
@@ -597,7 +492,7 @@ payload | Event payload. | Optional, Optional, Hash [String,String between 1 and
 
 #### service.join
 
-This event represents a new service joining a session. The payload contains
+This event represents a new service joining the registry. The payload contains
 a service object.
 
 ##### service.join Example Event Object
@@ -609,46 +504,57 @@ a service object.
     "type": "service.join",
     "payload": {
         "id": "dfw1-api",
-        "session_id": "sessionId",
+        "heartbeat_timeout": 3,
         "tags": [],
         "metadata": {}
     }
 }
 ```
 
-#### services.timeout
+#### service.remove
 
-This event represents a session timeout, which occurs when a client doesn't
-heartbeat a session within the defined timeout. The payload contains a list
-of service objects associated with the session.
+This event is inserted when a user deletes a service using an API call. The 
+payload contains a deleted service object.
 
-##### services.timeout Example Event Object
+##### service.remove Example Event Object
 
 ```javascript
 {
-    "type": "services.timeout",
-    "payload": [
-        {
-            "id": "dfw1-api",
-            "session_id": "seBlTTbxKK",
-            "tags": [],
-            "metadata": {}
-        },
-        {
-            "id": "dfw1-db1",
-            "session_id": "seBlTTbxKK",
-            "tags": [
-                "database",
-                "mysql"
-            ],
-            "metadata": {
-                "region": "dfw",
-                "port": "3306",
-                "ip": "127.0.0.1",
-                "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
-            }
+    "type": "service.remove",
+    "payload": {
+        "id": "dfw1-db1",
+        "heartbeat_timeout": 3,
+        "tags": [
+            "database",
+            "mysql"
+        ],
+        "metadata": {
+            "region": "dfw",
+            "port": "3306",
+            "ip": "127.0.0.1",
+            "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
         }
-    ]
+    }
+}
+```
+
+#### service.timeout
+
+This event represents a service timeout, which occurs when a client doesn't
+heartbeat a service within the defined timeout. The payload contains a service
+object.
+
+##### service.timeout Example Event Object
+
+```javascript
+{
+    "type": "service.timeout",
+    "payload": {
+        "id": "dfw1-api",
+        "heartbeat_timeout": 3,
+        "tags": [],
+        "metadata": {}
+    }
 }
 ```
 
@@ -716,7 +622,7 @@ returned.
             "type": "service.join",
             "payload": {
                 "id": "dfw1-api",
-                "session_id": "sessionId",
+                "heartbeat_timeout": 3,
                 "tags": [],
                 "metadata": {}
             }
@@ -725,7 +631,24 @@ returned.
             "type": "service.join",
             "payload": {
                 "id": "dfw1-db1",
-                "session_id": "sessionId",
+                "heartbeat_timeout": 3,
+                "tags": [
+                    "database",
+                    "mysql"
+                ],
+                "metadata": {
+                    "region": "dfw",
+                    "port": "3306",
+                    "ip": "127.0.0.1",
+                    "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
+                }
+            }
+        },
+        {
+            "type": "service.remove",
+            "payload": {
+                "id": "dfw1-db1",
+                "heartbeat_timeout": 3,
                 "tags": [
                     "database",
                     "mysql"
@@ -751,7 +674,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId"
+                "configuration_value_id": "configId1"
             }
         },
         {
@@ -759,7 +682,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId1"
+                "configuration_value_id": "configId"
             }
         },
         {
@@ -773,16 +696,24 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/zookeeper/listen_ip",
-                "configuration_value_id": "/production/zookeeper/listen_ip"
+                "new_value": "value for /production/cassandra/rpc_server/timeout",
+                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
             }
         },
         {
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/timeout",
-                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
+                "new_value": "value for /production/cassandra/rpc_server/type",
+                "configuration_value_id": "/production/cassandra/rpc_server/type"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/zookeeper/listen_ip",
+                "configuration_value_id": "/production/zookeeper/listen_ip"
             }
         },
         {
@@ -805,117 +736,22 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/type",
-                "configuration_value_id": "/production/cassandra/rpc_server/type"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
                 "new_value": "value for /production/zookeeper/listen_port",
                 "configuration_value_id": "/production/zookeeper/listen_port"
             }
         },
         {
-            "type": "services.timeout",
-            "payload": [
-                {
-                    "id": "dfw1-api",
-                    "session_id": "seBlTTbxKK",
-                    "tags": [],
-                    "metadata": {}
-                },
-                {
-                    "id": "dfw1-db1",
-                    "session_id": "seBlTTbxKK",
-                    "tags": [
-                        "database",
-                        "mysql"
-                    ],
-                    "metadata": {
-                        "region": "dfw",
-                        "port": "3306",
-                        "ip": "127.0.0.1",
-                        "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
-                    }
-                }
-            ]
-        }
-    ],
-    "metadata": {
-        "count": 13,
-        "limit": 100,
-        "marker": null,
-        "next_marker": null,
-        "next_href": null
-    }
-}
-```
-
-## Views
-
-Views contain a combination of data that usually includes multiple different
-objects. The primary purpose of a view is to save API calls and make data
-retrieval more efficient. Instead of doing multiple API calls and then
-combining the result yourself, you can perform a single API call against the
-view endpoint.
-
-### Get Overview
-
-Verb | URI | Description
----- | --- | -----------
-GET | /views/overview | Returns the overview view for this account.
-
-There are no required parameters for this call.
-
-Normal Response Code: 200
-
-Error Response Codes: 400, 401, 403, 404, 500, 503
-
-This view includes a list of sessions on your account and each session's
-child service objects.
-
-#### Get Overview Response
-
-```javascript
-{
-    "values": [
-        {
-            "session": {
-                "id": "seId0",
-                "metadata": {
-                    "region": "dfw"
-                },
+            "type": "service.timeout",
+            "payload": {
+                "id": "dfw1-api",
                 "heartbeat_timeout": 3,
-                "last_seen": null
-            },
-            "services": [
-                {
-                    "id": "dfw1-api",
-                    "session_id": "seId0",
-                    "tags": [],
-                    "metadata": {}
-                },
-                {
-                    "id": "dfw1-db1",
-                    "session_id": "seId0",
-                    "tags": [
-                        "database",
-                        "mysql"
-                    ],
-                    "metadata": {
-                        "region": "dfw",
-                        "port": "3306",
-                        "ip": "127.0.0.1",
-                        "version": "5.5.24-0ubuntu0.12.04.1 (Ubuntu)"
-                    }
-                }
-            ]
+                "tags": [],
+                "metadata": {}
+            }
         }
     ],
     "metadata": {
-        "count": 1,
+        "count": 14,
         "limit": 100,
         "marker": null,
         "next_marker": null,

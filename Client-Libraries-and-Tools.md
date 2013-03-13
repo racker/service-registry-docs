@@ -83,7 +83,7 @@ cache in case a minor service interruption occurs.
 ### Retry Heartbeating on Non-404 Errors
 
 If the API endpoint returns a non 404 error (e.g 500) when heartbeating a
-session, you should immediately try to re-send the heartbeat. The error could
+service, you should immediately try to re-send the heartbeat. The error could
 indicate an intermediate instead of an actual issue.
 
 ## Tools
@@ -131,7 +131,7 @@ process for the long-running process you want to wrap and registering it in the
 service registry.
 
 If the wrapped process dies, the wrapper itself also exits which will cause
-the session to eventually expire (how long it takes depends on the heartbeat
+the service to eventually expire (how long it takes depends on the heartbeat
 interval).
 
 #### Installation

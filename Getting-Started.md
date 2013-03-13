@@ -3,17 +3,17 @@
 ## Getting Started with Rackspace Service Registry
 
 The quickest way to try out the Service Registry is to use one of the
-client libraries to create a session and a service, and then use the
-command line client to list them and view the corresponding events.
+client libraries to create a service, and then use the command line
+client to list the services and view the corresponding events.
 
-First create a session and a service by following the instructions in the
+First create a service by following the instructions in the
 [Integration Instructions](integration-instructions) chapter.
 
-Now that you've created a session and a service, you can list them
-using the command line tool:
+Now that you've created a service, you can list all of the services using
+the command line tool:
 
 ```shell
-raxsr sessions list --username=username --api-key=key
+raxsr services list --username=username --api-key=key
 ```
 
 All the commands in the client follow the format described bellow:
@@ -25,7 +25,6 @@ raxsr <resource> <action> [options]
 Resource can be one of the following:
 
 * account
-* sessions
 * services
 * events
 * configuration
@@ -40,18 +39,9 @@ terminal:
 raxsr help <resource> <action>
 ```
 
-### Service Registry CLI Sessions List
+### Service Registry CLI Services List
 
-```
-+------------+-------------------+-----------+-----------+
-| Session ID | Heartbeat Timeout | Last Seen | Metadata  |
-+------------+-------------------+-----------+-----------+
-| seDMRMcCQh |                30 |           |           |
-+------------+-------------------+-----------+-----------+
-
-Limit: 100
-
-```
+List all the services.
 
 ```shell
 raxsr services list --username=username --api-key=key
@@ -60,11 +50,11 @@ raxsr services list --username=username --api-key=key
 ### Service Registry CLI Services List
 
 ```
-+------------+------------+------+-------------+
-| Service ID | Session ID | Tags | Metadata    |
-+------------+------------+------+-------------+
-| service id | seDMRMcCQh | www  | region: dfw |
-+------------+------------+------+-------------+
++------------+-------------------+------+-------------+
+| Service ID | Heartbeat Timeout | Tags | Metadata    |
++------------+-------------------+------+-------------+
+| service id | 30                | www  | region: dfw |
++------------+-------------------+------+-------------+
 
 Limit: 100
 

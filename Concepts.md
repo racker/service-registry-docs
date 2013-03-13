@@ -1,40 +1,22 @@
 # Concepts
 
-## Session
-
-Sessions give clients the ability to manage persistent context for one or more
-services. This context is then used for other operations. The client is
-responsible for sending heartbeats to maintain the session.
-
-If a session is not heartbeated in the defined timeout interval, the
-session is considered dead. All of its child Service objects are deleted,
-and a `services.timeout` event is inserted into the events feed.
-
 ## Service
 
 A service represents an instance of a long running process on your server.
-Each service belongs to a single session which must be periodically
-heartbeated to indicate that the session and its services are still alive.
+The client is responsible for sending heartbeats to indicate that the service is
+still alive.
+
+If a service is not heartbeated in the defined timeout interval, the
+service is considered dead. When this happens, Service object is deleted
+and a `service.timeout` event is inserted into the events feed.
 
 Some example services include:
 
 * API server instance
 * Apache instance
 * MySQL instance
-* Java application instance
 * ZNC instance
-
-Usually a single session will have a single service associated with it, but
-in some cases you may want to have multiple services associated with a
-single session. An example of this would be a Java application with 2
-threads:
-
-* thread 1 - exposes a HTTP interface and listens on port 8000
-* thread 2 - exposes a Thrift interface and listens in port 9000
-
-In this scenario, when a whole process dies, both of the threads go away,
-which means that you can model it by having a single session with two
-services associated with it (one per thread).
+* Long running Python / Ruby / Java application instance
 
 ## Configuration
 
@@ -44,7 +26,7 @@ deleted.
 
 Each configuration key can contain a namespace. Namespace allows you to organize
 different (related) configuration values together in a hierarchical manner.
-They also make retrieving a subset of configuration values easier and more 
+They also make retrieving a subset of configuration values easier and more
 efficient.
 
 If a key contains a namespace, you need to refer to the configuration using a
@@ -85,10 +67,10 @@ The events feed contains a list of events which occurred during the life-
 time of your account. An event is inserted each time one of the following
 incidents occur:
 
-* A service joins a session
+* A service is created
 * A configuration value is updated
 * A configuration value is removed
-* A session times out
+* A service times out
 
 ![Events feed visualized using a timeline](/img/events_feed_timeline_visualization.png)
 
@@ -112,5 +94,4 @@ has the following attributes:
 
 All objects in the system are identified by a unique id. You'll use an
 object's id when you want to perform certain operations on it. For example,
-when you want to create a service and associate it with a session, you'll
-need to know the session id.
+when you want to heartbeat a service you'll need to know the service id.
