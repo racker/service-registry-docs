@@ -24,39 +24,39 @@ Configuration enables clients to store arbitrary key/value pairs on the
 server and get notified via an event feed when a value is updated or
 deleted.
 
-Each configuration key can contain a namespace. Namespace allows you to organize
-different (related) configuration values together in a hierarchical manner.
-They also make retrieving a subset of configuration values easier and more
-efficient.
+Each configuration key can contain a namespace. Namespaces allows you to
+organize different (related) configuration values together in a hierarchical
+manner. They also make retrieving a subset of configuration values easier
+and more efficient.
 
-If a key contains a namespace, you need to refer to the configuration using a
-fully qualified name which includes a namespace. For example, if a namespace is
-`/production/cassandra/` and the key name is `listen_ip`, fully qualified key
+If a key contains a namespace, you need to refer to it using a fully qualified
+name which includes a namespace. For example, if a namespace is
+/production/cassandra/ and the key name is listen_ip, fully qualified key
 for this value is `/production/cassandra/listen_ip`.
 
 Example of fully qualified configuration keys:
 
 * cassandra_listen_ip (no namespace)
 * cassandra_listen_port (no namespace)
-* /production/cassandra/listen_ip (namespace is /production/cassandra)
-* /production/cassandra/listen_port (namespace is /production/cassandra)
+* /production/cassandra/listen_ip (namespace is /production/cassandra/)
+* /production/cassandra/listen_port (namespace is /production/cassandra/)
 
-![Configuration Namespaces visualized using a tree](/img/configuration_namespaces_tree_visualization.png)
+![Configuration Namespaces Visualized Using a Tree](/img/configuration_namespaces_tree_visualization.png)
 
 Namespaces are also ephemeral which means they only exist if at least one
 configuration value is stored under it.
 
-When retrieving values from the API you differentiate between a configuration
-value based on the presence of a trailing forward slash. If a trailing slash is
-present it's treated as a namespace otherwise it's treated as a configuration
-key.
+When retrieving values from the API you differentiate between a namespace and
+a configuration value based on the presence of a trailing forward slash. If a
+trailing slash is present it's treated as a namespace otherwise it's treated 
+as a configuration key.
 
 For example:
 
 * GET /configuration/production/casssandra/ - cassandra is treated as a
 sub-namespace under namespace production.
 * GET /configuration/production/cassandra - cassandra is treated as a key under
-production namespace.
+namespace production.
 
 A configuration value is an opaque string and is treated as such in our
 system.

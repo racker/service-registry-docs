@@ -265,7 +265,7 @@ Error Response Codes: 400, 401, 403, 404, 500, 503
 
 ```javascript
 {
-    "token": "bf602f90-9196-11e2-989f-89468c9d42ce"
+    "token": "1750a6e0-94b1-11e2-9305-34144166e7a0"
 }
 ```
 
@@ -674,7 +674,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId1"
+                "configuration_value_id": "configId"
             }
         },
         {
@@ -682,7 +682,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId"
+                "configuration_value_id": "configId1"
             }
         },
         {
@@ -690,6 +690,14 @@ returned.
             "payload": {
                 "old_value": "test value 123456",
                 "configuration_value_id": "configId"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/zookeeper/listen_ip",
+                "configuration_value_id": "/production/zookeeper/listen_ip"
             }
         },
         {
@@ -712,8 +720,8 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/zookeeper/listen_ip",
-                "configuration_value_id": "/production/zookeeper/listen_ip"
+                "new_value": "value for /production/cassandra/rpc_server/type",
+                "configuration_value_id": "/production/cassandra/rpc_server/type"
             }
         },
         {
@@ -722,14 +730,6 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/cassandra/rpc_server/timeout",
                 "configuration_value_id": "/production/cassandra/rpc_server/timeout"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/type",
-                "configuration_value_id": "/production/cassandra/rpc_server/type"
             }
         },
         {
