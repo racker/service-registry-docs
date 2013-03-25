@@ -265,7 +265,7 @@ Error Response Codes: 400, 401, 403, 404, 500, 503
 
 ```javascript
 {
-    "token": "1750a6e0-94b1-11e2-9305-34144166e7a0"
+    "token": "9323c780-9564-11e2-8872-593664109f4a"
 }
 ```
 
@@ -696,6 +696,14 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
+                "new_value": "value for /production/cassandra/rpc_server/timeout",
+                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
                 "new_value": "value for /production/zookeeper/listen_ip",
                 "configuration_value_id": "/production/zookeeper/listen_ip"
             }
@@ -722,14 +730,6 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/cassandra/rpc_server/type",
                 "configuration_value_id": "/production/cassandra/rpc_server/type"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/timeout",
-                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
             }
         },
         {
