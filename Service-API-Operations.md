@@ -265,7 +265,7 @@ Error Response Codes: 400, 401, 403, 404, 500, 503
 
 ```javascript
 {
-    "token": "fee764b0-9625-11e2-bb60-d05b615038a8"
+    "token": "ea9b7110-9628-11e2-96d5-4d31c0f15a00"
 }
 ```
 
@@ -674,7 +674,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId1"
+                "configuration_value_id": "configId"
             }
         },
         {
@@ -682,7 +682,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId"
+                "configuration_value_id": "configId1"
             }
         },
         {
@@ -698,6 +698,14 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/zookeeper/listen_ip",
                 "configuration_value_id": "/production/zookeeper/listen_ip"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/rpc_server/timeout",
+                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
             }
         },
         {
@@ -722,14 +730,6 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/cassandra/listen_ip",
                 "configuration_value_id": "/production/cassandra/listen_ip"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/timeout",
-                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
             }
         },
         {
