@@ -265,7 +265,7 @@ Error Response Codes: 400, 401, 403, 404, 500, 503
 
 ```javascript
 {
-    "token": "287e0fc0-ac44-11e2-9784-afa88f5a1cbc"
+    "token": "1fd32570-ac87-11e2-b004-3c6dda447d26"
 }
 ```
 
@@ -572,7 +572,7 @@ this is the first time the value has been set, the old value will be `null`.
     "payload": {
         "old_value": null,
         "new_value": "test value 123456",
-        "configuration_value_id": "configId1"
+        "configuration_value_id": "configId2"
     }
 }
 ```
@@ -666,7 +666,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId1"
+                "configuration_value_id": "configId2"
             }
         },
         {
@@ -674,7 +674,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId2"
+                "configuration_value_id": "configId1"
             }
         },
         {
@@ -696,8 +696,8 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/listen_ip",
-                "configuration_value_id": "/production/cassandra/listen_ip"
+                "new_value": "value for /production/cassandra/rpc_server/timeout",
+                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
             }
         },
         {
@@ -712,16 +712,8 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/timeout",
-                "configuration_value_id": "/production/cassandra/rpc_server/timeout"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "value for /production/cassandra/rpc_server/type",
-                "configuration_value_id": "/production/cassandra/rpc_server/type"
+                "new_value": "value for /production/cassandra/listen_ip",
+                "configuration_value_id": "/production/cassandra/listen_ip"
             }
         },
         {
@@ -730,6 +722,14 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/cassandra/listen_port",
                 "configuration_value_id": "/production/cassandra/listen_port"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/rpc_server/type",
+                "configuration_value_id": "/production/cassandra/rpc_server/type"
             }
         },
         {
