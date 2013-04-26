@@ -47,8 +47,8 @@ Name | Description | Validation
 ---- | --- | -----------
 heartbeat_timeout | Maximum time between heartbeats | Integer, Value (3..120)
 id | Service id | Immutable, String between 3 and 65 characters long, String matching the regex /^[a-z0-9_\-\.]{3,65}$/i
-metadata | Arbitrary key/value pairs. | Optional, Hash [String,String between 1 and 255 characters long:String,String between 1 and 255 characters long], Array or object with number of items between 0 and 20
-tags | Service tags. | Optional, Array [String,String between 1 and 55 characters long], Array or object with number of items between 0 and 10
+metadata | Arbitrary key/value pairs. | Optional, Array or object with number of items between 0 and 20, Hash [String,String between 1 and 255 characters long:String,String between 1 and 255 characters long]
+tags | Service tags. | Optional, Array or object with number of items between 0 and 10, Array [String,String between 1 and 55 characters long]
 
 
 `tag` field allows you to logically group services (e.g. tagging all the API
@@ -265,7 +265,7 @@ Error Response Codes: 400, 401, 403, 404, 500, 503
 
 ```javascript
 {
-    "token": "731730d0-ade2-11e2-afec-0d9da33c3fb9"
+    "token": "d4e371e0-aeb7-11e2-a6b8-c8349bffbfe4"
 }
 ```
 
@@ -696,8 +696,8 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/listen_port",
-                "configuration_value_id": "/production/cassandra/listen_port"
+                "new_value": "value for /production/cassandra/listen_ip",
+                "configuration_value_id": "/production/cassandra/listen_ip"
             }
         },
         {
@@ -706,14 +706,6 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/zookeeper/listen_ip",
                 "configuration_value_id": "/production/zookeeper/listen_ip"
-            }
-        },
-        {
-            "type": "configuration_value.update",
-            "payload": {
-                "old_value": null,
-                "new_value": "value for /production/cassandra/listen_ip",
-                "configuration_value_id": "/production/cassandra/listen_ip"
             }
         },
         {
@@ -730,6 +722,14 @@ returned.
                 "old_value": null,
                 "new_value": "value for /production/cassandra/rpc_server/type",
                 "configuration_value_id": "/production/cassandra/rpc_server/type"
+            }
+        },
+        {
+            "type": "configuration_value.update",
+            "payload": {
+                "old_value": null,
+                "new_value": "value for /production/cassandra/listen_port",
+                "configuration_value_id": "/production/cassandra/listen_port"
             }
         },
         {
