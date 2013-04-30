@@ -265,7 +265,7 @@ Error Response Codes: 400, 401, 403, 404, 500, 503
 
 ```javascript
 {
-    "token": "ba2772b0-b1c4-11e2-b62c-25cf16ae51fa"
+    "token": "37386ff0-b1c7-11e2-8755-278cffcc3a6f"
 }
 ```
 
@@ -696,16 +696,16 @@ returned.
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/cassandra/listen_ip",
-                "configuration_value_id": "/production/cassandra/listen_ip"
+                "new_value": "value for /production/zookeeper/listen_ip",
+                "configuration_value_id": "/production/zookeeper/listen_ip"
             }
         },
         {
             "type": "configuration_value.update",
             "payload": {
                 "old_value": null,
-                "new_value": "value for /production/zookeeper/listen_ip",
-                "configuration_value_id": "/production/zookeeper/listen_ip"
+                "new_value": "value for /production/cassandra/listen_ip",
+                "configuration_value_id": "/production/cassandra/listen_ip"
             }
         },
         {
