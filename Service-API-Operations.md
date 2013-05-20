@@ -265,7 +265,7 @@ Error Response Codes: 400, 401, 403, 404, 500, 503
 
 ```javascript
 {
-    "token": "25e4e1d0-c18e-11e2-98ba-7426829cefcf"
+    "token": "1c7b0100-c194-11e2-8247-cb841e758150"
 }
 ```
 
@@ -674,7 +674,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId"
+                "configuration_value_id": "configId1"
             }
         },
         {
@@ -682,7 +682,7 @@ returned.
             "payload": {
                 "old_value": null,
                 "new_value": "test value 123456",
-                "configuration_value_id": "configId1"
+                "configuration_value_id": "configId"
             }
         },
         {
